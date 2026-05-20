@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generic Screenplay Line Trainer v25</title>
+<style>
+:root{--bg:#0b0f16;--panel:#121824;--panel2:#151d2a;--text:#edf3ff;--muted:#9fb0ca;--line:#263247;--blue:#7ab7ff;--green:#7ee787;--red:#ff7b8a;--yellow:#f6d365;--purple:#d2a8ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:22px}h1{margin:0 0 4px;font-size:28px}h2{margin:22px 0 10px;font-size:20px}.sub,.muted{color:var(--muted)}.card{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:13px;color:#cbd7ed}input,select,textarea{width:100%;background:#0c111a;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit}textarea{min-height:210px;resize:vertical}.btn{border:1px solid var(--line);background:#202838;color:#fff;border-radius:10px;padding:10px 13px;cursor:pointer;font-weight:750}.btn:hover{filter:brightness(1.08)}.btn:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--blue);color:#06101e;border-color:transparent}.good{background:var(--green);color:#061506;border-color:transparent}.bad{background:var(--red);color:#210809;border-color:transparent}.warn{background:var(--yellow);color:#1a1200;border-color:transparent}.purple{background:var(--purple);color:#16091f;border-color:transparent}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#101723;color:#dce7ff;border-radius:999px;padding:5px 10px;font-size:13px}.status{color:var(--muted);font-size:14px}.status strong{color:#fff}.helpbox{background:#101723;border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}.helpbox pre,.debug pre{white-space:pre-wrap;background:#080c13;border:1px solid #242e40;border-radius:10px;padding:10px;margin:8px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.small{font-size:13px;color:#aebbd3}.yourline{font-size:24px;font-weight:850;min-height:42px;margin:8px 0 12px}.hiddenline{display:inline-block;filter:blur(6px);user-select:none;color:#b7c4d9;font-style:italic;font-weight:850;letter-spacing:.08em}.cue{white-space:pre-wrap;color:#dce7ff;margin:8px 0 14px}.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:#111722;color:#fff}.shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:6px;color:#cbd7ed;font-size:14px}.ok{color:#8df29d}.no{color:#ff999d}.need{color:#ffe08b}.inlineControls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.inlineControls label{display:flex;gap:7px;align-items:center;color:#cbd7ed;font-size:14px}.inlineControls input[type="number"]{width:92px;padding:7px 9px}.fileRow{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.fileRow .field{flex:1 1 280px}.debug{display:none}.debug.open{display:block}.hide{display:none!important}.practiceCard{transition:border-color .15s,box-shadow .15s}.practiceCard.status-correct{border-color:rgba(126,231,135,.85);box-shadow:0 0 0 2px rgba(126,231,135,.12)}.practiceCard.status-failed{border-color:rgba(255,123,138,.9);box-shadow:0 0 0 2px rgba(255,123,138,.12)}.practiceCard.status-needs{border-color:rgba(246,211,101,.9);box-shadow:0 0 0 2px rgba(246,211,101,.13)}.statusBadge{font-weight:850;border-width:2px}.statusBadge.status-correct{background:rgba(126,231,135,.16);border-color:rgba(126,231,135,.85);color:#9ff5aa}.statusBadge.status-failed{background:rgba(255,123,138,.16);border-color:rgba(255,123,138,.85);color:#ff9aa5}.statusBadge.status-needs{background:rgba(246,211,101,.16);border-color:rgba(246,211,101,.85);color:#ffe08b}.statusBadge.status-new{background:#101723;color:#dce7ff}.statusLegend{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}.listenLive{border-color:rgba(122,183,255,.85)!important;box-shadow:0 0 0 2px rgba(122,183,255,.14)}.interimPreview{min-height:22px;color:#9fb0ca;font-size:14px;margin-top:6px}.sectionTools{background:#101723;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:14px}.sectionTools h3{margin:0 0 10px;font-size:16px}.sectionTools .grid{grid-template-columns:2fr 1fr 1fr 1.2fr 1.2fr}@media(max-width:820px){.grid{grid-template-columns:1fr 1fr}main{padding:14px}.yourline{font-size:20px}}@media(max-width:540px){.grid{grid-template-columns:1fr}.btn{width:100%}}
+
+summary.settingsSummary{cursor:pointer;font-weight:850;font-size:18px;list-style:none}
+summary.settingsSummary::-webkit-details-marker{display:none}
+summary.settingsSummary:after{content:'Open';float:right;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:#101723}
+details[open] summary.settingsSummary:after{content:'Close'}
+.topPractice{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}
+.bigCue{font-size:18px}
+.mainControls .btn{font-size:16px;padding:12px 15px}
+.secondaryControls{opacity:.92}
+@media(max-width:820px){.topPractice{grid-template-columns:1fr}}
+.lookupTable{width:100%;border-collapse:collapse;margin-top:10px;font-size:14px}
+.lookupTable th,.lookupTable td{border:1px solid var(--line);padding:9px 10px;vertical-align:top;text-align:left}
+.lookupTable th{background:#101723;color:#dce7ff}
+.lookupTable td:nth-child(2){white-space:nowrap;font-weight:850;color:#fff}
+.lookupTable .btn{padding:6px 9px;font-size:13px}
+.lookupNote{margin-top:8px}
+.lineLookupTable td:nth-child(1){width:54px;text-align:right;font-weight:850;color:#fff}
+.lineLookupTable td:nth-child(2){width:78px}
+.lineLookupTable td:nth-child(3){width:150px;color:var(--muted);font-style:italic}
+.lineLookupTable td:nth-child(4){min-width:280px}
+.lineLookupTable td:nth-child(5){min-width:260px}
+.lineLookupTable tr.hideLine{display:none}
+.lineActions{display:flex;gap:6px;flex-wrap:wrap}
+.lineActions .btn{padding:6px 8px;font-size:12px}
+@media(max-width:720px){.lookupTable,.lookupTable tbody,.lookupTable tr,.lookupTable td,.lookupTable th{display:block}.lookupTable thead{display:none}.lookupTable tr{border:1px solid var(--line);border-radius:12px;margin:10px 0;background:#101723;overflow:hidden}.lookupTable td{border:0;border-bottom:1px solid var(--line)}.lookupTable td:last-child{border-bottom:0}.lookupTable td:before{display:block;color:var(--muted);font-size:12px;font-weight:750;margin-bottom:3px}.lookupTable td:nth-child(1):before{content:'Section'}.lookupTable td:nth-child(2):before{content:'Actor lines'}.lookupTable td:nth-child(3):before{content:'Beat'}.lookupTable td:nth-child(4):before{content:'Action'}}
+
+</style>
+</head>
+<body>
+<main>
+<h1>Generic Screenplay Line Trainer <span class="pill">v27 rehearsal navigator</span></h1>
+<p class="sub">Load any plain-text screenplay. No built-in script. No default script. The page reads the text you choose or paste.</p>
+
+<section class="card">
+<h2>1. Load script</h2>
+<div class="helpbox">
+  <strong>Working format</strong>
+  <pre>EXT. BONNIE DUNS GOLF COURSE - DAY
+
+Jay searches for his ball.
+
+JAY
+I know it landed here somewhere.
+
+REESE
+(Shouting from offstage)
+Did you find it?</pre>
+  <div class="small">The parser ignores scene headings, action, metadata, and standalone parentheticals for line numbering. Start/end and saved sections use actor rehearsal line numbers only.</div>
+</div>
+<div class="fileRow">
+  <div class="field"><label>Choose plain text script file</label><input id="scriptFile" type="file" accept=".txt,text/plain"></div>
+  <button class="btn primary" id="loadFileBtn" type="button">Load selected file</button>
+  <button class="btn" id="parseBtn" type="button">Parse text box</button>
+</div>
+<div id="fileStatus" class="status">No file selected.</div>
+<div class="field" style="margin-top:14px"><label>Script text loaded here</label><textarea id="scriptInput" spellcheck="false" placeholder="Choose a .txt file and click Load selected file, or paste screenplay text here."></textarea></div>
+<div class="buttons">
+  <button class="btn" id="clearBoxBtn" type="button">Clear text box</button>
+  <button class="btn bad" id="clearAllBtn" type="button">Reset trainer</button>
+  <button class="btn" id="debugBtn" type="button">Show parser debug</button>
+</div>
+<div id="loadStatus" class="status">No script parsed yet.</div>
+<div id="debugPanel" class="debug"><pre id="debugText">No debug yet.</pre></div>
+</section>
+
+<section class="card">
+<h2>2. Choose practice</h2>
+<div class="grid">
+  <div class="field"><label>Your role</label><select id="role"></select></div>
+  <div class="field"><label>Practice mode</label><select id="mode"><option value="all">All lines in order</option><option value="random">Random</option><option value="buildup">Line drill: build up from start</option><option value="smart">Smart Review</option><option value="pacing">Run-through / pacing</option><option value="failed">Failed lines</option><option value="needs">Needs work lines</option></select></div>
+  <div class="field"><label>Start line</label><input id="start" type="number" min="1" value="1"></div>
+  <div class="field"><label>End line</label><input id="end" type="number" min="1"></div>
+  <div class="field"><label>Repeat each line</label><input id="lineRepeats" type="number" min="1" value="1"></div>
+  <div class="field"><label>Repeat sequence</label><input id="seqRepeats" type="number" min="1" value="1"></div>
+</div>
+<div class="helpbox small">Random shuffles the selected actor-line range. Line drill builds cumulative runs: start line, then start-start+1, then start-start+2. Smart Review favors shaky lines without adding a dashboard. Run-through / pacing reads cues, leaves timed silence for your line, then moves forward. Use Typing input style to automatically lengthen the pause without adding another mode.</div>
+<div class="helpbox small"><strong>Core flow:</strong> pick role, line range, mode, then Start. Use Advanced settings only for voice, mic, sounds, saved sections, and repeats.</div>
+
+<details class="card" id="sectionLookup">
+<summary class="settingsSummary">Section Lookup</summary>
+<div class="small lookupNote">Dramatic beat ranges for the loaded script. These use the same actor rehearsal line numbers as Start line and End line.</div>
+<table class="lookupTable">
+<thead><tr><th>Section</th><th>Actor Lines</th><th>Beat</th><th>Use</th></tr></thead>
+<tbody>
+<tr><td>Opening / Looking for the Ball</td><td>1-26</td><td>Golf setup, searching, banter, Reese starts pushing Jay to take the drop.</td><td><button class="btn lookupRangeBtn" type="button" data-start="1" data-end="26">Use range</button></td></tr>
+<tr><td>Pressure Builds</td><td>27-48</td><td>Reese keeps poking, Jay resists, emotional stakes start leaking through.</td><td><button class="btn lookupRangeBtn" type="button" data-start="27" data-end="48">Use range</button></td></tr>
+<tr><td>The Layoffs Reveal</td><td>49-66</td><td>Jay admits job loss fears, money stress, identity collapse.</td><td><button class="btn lookupRangeBtn" type="button" data-start="49" data-end="66">Use range</button></td></tr>
+<tr><td>Marriage Trouble</td><td>67-79</td><td>Wife conflict, honesty issue, home life unraveling.</td><td><button class="btn lookupRangeBtn" type="button" data-start="67" data-end="79">Use range</button></td></tr>
+<tr><td>Ball Found / Temporary Relief</td><td>80-85</td><td>Reese finds the ball, mood briefly lifts.</td><td><button class="btn lookupRangeBtn" type="button" data-start="80" data-end="85">Use range</button></td></tr>
+<tr><td>Jay Spirals Openly</td><td>86-94</td><td>Jay admits he’s really struggling and asks for help.</td><td><button class="btn lookupRangeBtn" type="button" data-start="86" data-end="94">Use range</button></td></tr>
+<tr><td>Hero Shot Speech</td><td>95</td><td>Reese delivers the golf metaphor about laying up and playing smart.</td><td><button class="btn lookupRangeBtn" type="button" data-start="95" data-end="95">Use range</button></td></tr>
+<tr><td>Ending / Resolution</td><td>96-99</td><td>Final exchange: “holding on too tight,” then “hit your damn ball.”</td><td><button class="btn lookupRangeBtn" type="button" data-start="96" data-end="99">Use range</button></td></tr>
+</tbody>
+</table>
+<div id="lookupStatus" class="status lookupNote">Click Use range to copy a section into Start line and End line.</div>
+</details>
+<details class="card" id="dialogueLineLookup">
+<summary class="settingsSummary">Rehearsal Navigator</summary>
+<div class="small lookupNote">Search by phrase, role, or line number. This list rebuilds every time you load and parse a script.</div>
+<div class="fileRow" style="margin-top:10px">
+  <div class="field"><label>Find a line</label><input id="lineLookupSearch" type="search" placeholder="Example: holding on too tight, Callaway, 95, JAY"></div>
+  <button class="btn" id="clearLineLookupSearch" type="button">Clear search</button>
+</div>
+<table class="lookupTable lineLookupTable">
+<thead><tr><th>#</th><th>Role</th><th>Parenthetical</th><th>Line</th><th>Actions</th></tr></thead>
+<tbody id="dialogueLineLookupBody">
+<tr><td colspan="5">Load and parse a script to build the rehearsal navigator.</td></tr>
+</tbody>
+</table>
+<div id="lineLookupStatus" class="status lookupNote">Load and parse a script to search numbered lines.</div>
+</details>
+
+
+<div class="buttons">
+  <button class="btn primary" id="startBtn">Start</button>
+  <button class="btn purple" id="needsOnlyBtn">Needs-work drill</button>
+  <button class="btn" id="clearNeedsBtn">Clear needs-work marks</button>
+  <button class="btn" id="clearFailedBtn">Clear failed marks</button>
+</div>
+<details class="card" id="advancedSettings"><summary class="settingsSummary">Advanced settings</summary>
+<div class="inlineControls">
+  <label><input id="autoAdvance" type="checkbox" checked> Auto-advance after correct</label>
+  <label>Delay <input id="advanceDelay" type="number" min="0" step="100" value="700"> ms</label>
+  <label><input id="autoReadCue" type="checkbox"> Auto-read only the cue line, not the speaker name</label>
+  <label><input id="autoListen" type="checkbox"> Keep listener open between lines</label>
+  <label><input id="autoSpeechCheck" type="checkbox"> Auto-check after I stop speaking</label>
+  <label>Speech pause <input id="speechPauseMs" type="number" min="500" step="100" value="1400"> ms</label>
+  <label><input id="clearWrongSpeech" type="checkbox" checked> Clear wrong spoken attempts</label>
+  <label><input id="resultSoundCue" type="checkbox" checked> Sound cue after check</label>
+  <label><input id="recoveryRewind" type="checkbox" checked> Recovery rewind on failed lines</label>
+  <label>Rewind <input id="recoveryRewindLines" type="number" min="1" max="5" step="1" value="2"> lines</label>
+  <label>Pacing input style <select id="pacingInputStyle"><option value="speaking">Speaking</option><option value="typing">Typing</option></select></label>
+  <label>Typing time boost <input id="pacingTypingBoost" type="number" min="100" max="400" step="25" value="175"> %</label>
+  <label>Pacing WPM <input id="pacingWpm" type="number" min="90" max="220" step="5" value="145"></label>
+  <label>Padding <input id="pacingPadSec" type="number" min="0" max="8" step="0.25" value="1.5"> sec</label>
+  <label>Minimum <input id="pacingMinSec" type="number" min="1" max="12" step="0.25" value="2.5"> sec</label>
+  <label>Current line time <input id="pacingLineSec" type="number" min="1" max="120" step="0.25" value="3"> sec</label>
+  <label><input id="pacingListenCheck" type="checkbox" checked> In pacing mode, listen and grade during the pause</label>
+  <label>Volume <input id="soundVolume" type="number" min="0" max="100" step="5" value="70"> %</label>
+</div>
+<div class="buttons">
+  <button class="btn" id="enableSoundBtn" type="button">Enable sound cues</button>
+  <button class="btn" id="testPassSoundBtn" type="button">Test ding</button>
+  <button class="btn" id="testFailSoundBtn" type="button">Test eh</button>
+  <button class="btn" id="savePacingTimeBtn" type="button">Save current line time</button>
+</div>
+<div id="soundStatus" class="status">Sound cues are off until you click Enable sound cues once.</div>
+<div class="sectionTools">
+  <h3>Sections and loops</h3>
+  <div class="grid">
+    <div class="field"><label>Section name</label><input id="sectionName" placeholder="Example: Scene 1 or Reese exchange"></div>
+    <div class="field"><label>Start line</label><input id="sectionStart" type="number" min="1"></div>
+    <div class="field"><label>End line</label><input id="sectionEnd" type="number" min="1"></div>
+    <div class="field"><label>Saved sections</label><select id="sectionSelect"><option value="">No sections yet</option></select></div>
+    <div class="field"><label>&nbsp;</label><button class="btn primary" id="saveSectionBtn" type="button">Save / update section</button></div>
+  </div>
+  <div class="buttons">
+    <button class="btn" id="useCurrentRangeBtn" type="button">Use current start/end</button>
+    <button class="btn" id="applySectionBtn" type="button">Apply selected section</button>
+    <button class="btn purple" id="startSectionBtn" type="button">Start section</button>
+    <button class="btn" id="exportSectionsBtn" type="button">Export sections</button>
+    <button class="btn" id="importSectionsBtn" type="button">Import sections file</button>
+    <button class="btn bad" id="deleteSectionBtn" type="button">Delete selected section</button>
+    <input id="sectionsFile" type="file" accept=".json,.txt,.tsv,text/plain,application/json" class="hide">
+  </div>
+  <div id="sectionStatus" class="status">Create a section by setting actor rehearsal start/end line numbers, save it, import a sections file, or embed SECTION lines in the script text. Sequence repeat controls how many times the section loops.</div>
+</div>
+<div class="grid" style="margin-top:14px">
+  <div class="field" style="grid-column:span 3"><label>Reader voice</label><select id="voiceSelect"><option value="">Default browser voice</option></select></div>
+  <div class="field"><label>Voice rate</label><input id="voiceRate" type="number" min="0.5" max="2" step="0.05" value="0.95"></div>
+  <div class="field"><label>Voice pitch</label><input id="voicePitch" type="number" min="0" max="2" step="0.05" value="1"></div>
+  <div class="field"><label>&nbsp;</label><button class="btn" id="testVoiceBtn" type="button">Test voice</button></div>
+</div>
+<div id="voiceStatus" class="status">Voice list will load from your browser.</div>
+</details>
+</section>
+
+<section class="card practiceCard" id="practiceCard">
+<div class="row"><div><h2>3. Rehearse</h2><div id="counter" class="status">No script loaded</div><div class="statusLegend small">Legend: <span class="pill statusBadge status-correct">Passed</span> <span class="pill statusBadge status-needs">Needs work</span> <span class="pill statusBadge status-failed">Failed</span> <span class="pill">Memory: 🔴 shaky 🟡 okay 🟢 solid</span></div></div><div><span id="lineStatus" class="pill statusBadge status-new">Not started</span></div></div>
+<p class="muted">Cue line immediately before yours</p>
+<div class="cue" id="cueText">Load and parse a script first.</div>
+<p class="muted">Line</p>
+<div class="yourline"><span id="answerText" class="hiddenline">Hidden blurred text</span></div>
+<div class="field"><label>Type the line from memory</label><textarea id="attempt" style="min-height:95px" placeholder="Type your line, then press Enter or click Check."></textarea><div id="interimPreview" class="interimPreview"></div></div>
+<div class="buttons">
+  <button class="btn" id="prevBtn">Previous</button>
+  <button class="btn" id="nextBtn">Next</button>
+  <button class="btn primary" id="checkBtn">Check</button>
+  <button class="btn" id="speakBtn">Speak line</button>
+  <button class="btn purple" id="enableMicBtn">Enable microphone</button>
+  <button class="btn" id="listenBtn">Start listening</button>
+  <button class="btn" id="stopListenBtn">Stop listening</button>
+  <button class="btn" id="revealBtn">Reveal line</button>
+  <button class="btn good" id="correctBtn">Mark passed</button>
+  <button class="btn bad" id="failedBtn">Mark failed</button>
+  <button class="btn warn" id="needsBtn">Needs work</button>
+</div>
+<div id="feedback" class="status"></div>
+<div id="listenStatus" class="status">Click Enable microphone once before using auto-listen. v18 keeps the listener open and ignores reader audio instead of restarting the mic.</div>
+<div id="progress" class="status"></div>
+</section>
+
+<section class="card">
+<h2>Keyboard key</h2>
+<div class="shortcuts">
+  <div><span class="kbd">→</span> next line</div><div><span class="kbd">←</span> previous line</div><div><span class="kbd">Enter</span> check typed line</div><div><span class="kbd">Shift</span> + <span class="kbd">Enter</span> new line while typing</div><div><span class="kbd">Space</span> speak line</div><div><span class="kbd">P</span> mark passed</div><div><span class="kbd">F</span> mark failed</div><div><span class="kbd">R</span> reveal / hide</div><div><span class="kbd">W</span> needs work</div>
+</div>
+</section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const PLACEHOLDER = 'Hidden blurred text';
+let parsed=[]; let speakers=[]; let practice=[]; let pos=0; let revealed=false; let timer=null; let lastDebug='';
+const state={correct:new Set(),failed:new Set(),needs:new Set()};
+let memory={};
+let memoryKey='';
+let pacingTimes={};
+let pacingTimesKey='';
+let pacingTimer=null;
+let pacingCountdownTimer=null;
+let pacingModeActive=false;
+function simpleHash(text){let h=2166136261; const str=String(text||''); for(let i=0;i<str.length;i++){h^=str.charCodeAt(i); h=Math.imul(h,16777619);} return (h>>>0).toString(36);}
+function loadMemoryForText(text){memoryKey='screenplayTrainerMemoryV1_'+simpleHash(text); try{memory=JSON.parse(localStorage.getItem(memoryKey)||'{}')||{};}catch(e){memory={};}}
+function storeMemory(){if(!memoryKey)return; try{localStorage.setItem(memoryKey,JSON.stringify(memory));}catch(e){}}
+function loadPacingTimesForText(text){pacingTimesKey='screenplayTrainerPacingTimesV1_'+simpleHash(text); try{pacingTimes=JSON.parse(localStorage.getItem(pacingTimesKey)||'{}')||{};}catch(e){pacingTimes={};}}
+function storePacingTimes(){if(!pacingTimesKey)return; try{localStorage.setItem(pacingTimesKey,JSON.stringify(pacingTimes));}catch(e){}}
+function wordCount(text){const m=String(text||'').trim().match(/[A-Za-z0-9']+/g); return m?m.length:0;}
+function defaultPacingSeconds(item){
+  const wpm=Math.max(90,Math.min(220,parseFloat($('pacingWpm')?.value||'145')));
+  const pad=Math.max(0,parseFloat($('pacingPadSec')?.value||'1.5'));
+  const minSec=Math.max(1,parseFloat($('pacingMinSec')?.value||'2.5'));
+  let seconds=(wordCount(item?.line||'')/wpm)*60 + pad;
+  seconds=Math.max(minSec,seconds);
+  if(($('pacingInputStyle')?.value||'speaking')==='typing'){
+    const boost=Math.max(100,Math.min(400,parseFloat($('pacingTypingBoost')?.value||'175')))/100;
+    seconds=seconds*boost;
+  }
+  return seconds;
+}
+function pacingSeconds(item){if(!item)return 0; const saved=parseFloat(pacingTimes[String(item.lineNo)]); return Number.isFinite(saved) && saved>0 ? saved : defaultPacingSeconds(item);}
+function pacingShouldGrade(){return (($('pacingInputStyle')?.value||'speaking')==='typing') || !!($('pacingListenCheck') && $('pacingListenCheck').checked);}
+function saveCurrentPacingTime(){const item=current(); if(!item){$('feedback').textContent='Start practice before saving a line time.'; return;} const v=parseFloat($('pacingLineSec')?.value||''); if(!Number.isFinite(v)||v<=0){$('feedback').textContent='Enter a valid pacing time in seconds.'; return;} pacingTimes[String(item.lineNo)]=v; storePacingTimes(); $('feedback').innerHTML='<span class="ok">Saved pacing time for line '+item.lineNo+': '+v.toFixed(2)+' sec.</span>';}
+function clearPacingTimers(){ if(pacingTimer){clearTimeout(pacingTimer); pacingTimer=null;} if(pacingCountdownTimer){clearInterval(pacingCountdownTimer); pacingCountdownTimer=null;} }
+function pacingMode(){return $('mode') && $('mode').value==='pacing';}
+
+function memFor(item){if(!item)return {score:0,seen:0,streak:0}; const key=String(item.lineNo||item.index); return memory[key]||{score:0,seen:0,streak:0};}
+function memoryDot(item){const m=memFor(item); if(m.score>=2)return '🟢'; if(m.score<=-2)return '🔴'; return '🟡';}
+function updateMemory(item,outcome){if(!item)return; const key=String(item.lineNo||item.index); const m=memFor(item); if(outcome==='correct'){m.score=Math.min(5,(m.score||0)+1); m.streak=(m.streak||0)+1;} if(outcome==='failed'){m.score=Math.max(-5,(m.score||0)-2); m.streak=0;} if(outcome==='needs'){m.score=Math.max(-5,(m.score||0)-1); m.streak=0;} if(outcome==='reveal'){m.score=Math.max(-5,(m.score||0)-3); m.streak=0;} m.seen=(m.seen||0)+1; m.last=Date.now(); memory[key]=m; storeMemory();}
+function dialogueTotal(){return parsed.filter(x=>!x.stage).length;}
+function assignActorLineNumbers(items){let n=0; items.forEach(x=>{ if(!x.stage){ n++; x.lineNo=n; } }); return items;}
+function normalizeNumberWords(tokens){
+  const small={zero:0,oh:0,o:0,one:1,two:2,three:3,four:4,five:5,six:6,seven:7,eight:8,nine:9,ten:10,eleven:11,twelve:12,thirteen:13,fourteen:14,fifteen:15,sixteen:16,seventeen:17,eighteen:18,nineteen:19};
+  const tens={twenty:20,thirty:30,forty:40,fourty:40,fifty:50,sixty:60,seventy:70,eighty:80,ninety:90};
+  const out=[];
+  for(let i=0;i<tokens.length;i++){
+    let w=tokens[i];
+    if(/^[0-9]+$/.test(w)){out.push(String(parseInt(w,10))); continue;}
+    let consumed=0;
+    let total=0;
+    let matched=false;
+    if(small[w]!==undefined){ total=small[w]; consumed=1; matched=true; }
+    else if(tens[w]!==undefined){ total=tens[w]; consumed=1; matched=true; if(i+1<tokens.length && small[tokens[i+1]]!==undefined && small[tokens[i+1]]>0 && small[tokens[i+1]]<10){ total+=small[tokens[i+1]]; consumed=2; } }
+    if(matched && i+consumed<tokens.length && tokens[i+consumed]==='hundred'){
+      total=total*100; consumed++;
+      if(i+consumed<tokens.length && tokens[i+consumed]==='and') consumed++;
+      if(i+consumed<tokens.length){
+        const n=tokens[i+consumed];
+        if(small[n]!==undefined){ total+=small[n]; consumed++; }
+        else if(tens[n]!==undefined){ total+=tens[n]; consumed++; if(i+consumed<tokens.length && small[tokens[i+consumed]]!==undefined && small[tokens[i+consumed]]>0 && small[tokens[i+consumed]]<10){ total+=small[tokens[i+consumed]]; consumed++; } }
+      }
+    }
+    if(matched){ out.push(String(total)); i+=consumed-1; }
+    else { out.push(w); }
+  }
+  return out;
+}
+function normalizeHomophones(tokens){
+  // Keep this deliberately small. These are speech-recognition soundalikes that commonly
+  // break rehearsal without changing the meaning of the line.
+  const map={
+    tea:'tee', tee:'tee',
+    fore:'four',
+    yeah:'yes', yep:'yes', yup:'yes',
+    okay:'ok', ok:'ok'
+  };
+  return tokens.map(t=>map[t]||t);
+}
+function norm(s){
+  const cleaned=(s||'').toLowerCase()
+    .replace(/[“”]/g,'"').replace(/[‘’]/g,"'")
+    .replace(/-/g,' ')
+    .replace(/[^a-z0-9' ]+/g,' ')
+    .replace(/\b(a|an|the)\b/g,' ')
+    .replace(/\s+/g,' ').trim();
+  if(!cleaned) return '';
+  const homophones=normalizeHomophones(cleaned.split(' '));
+  return normalizeNumberWords(homophones).join(' ').replace(/\s+/g,' ').trim();
+}
+function cleanSpeaker(s){return (s||'').trim().replace(/\s+/g,' ').toUpperCase();}
+function baseSpeaker(s){return cleanSpeaker(s).replace(/\s*\([^)]*\)\s*$/,'').trim();}
+function isMetadataLine(line){return /^(title|author|authors|credit|source|draft date|date|contact|copyright|time|place)\s*:/i.test(line.trim());}
+function isSceneHeading(line){return /^(INT\.|EXT\.|EST\.|INT\/EXT\.|I\/E\.)/.test(cleanSpeaker(line));}
+function isTransition(line){return /^(CUT TO:|FADE IN:|FADE OUT\.?|DISSOLVE TO:|SMASH CUT TO:|MATCH CUT TO:|BACK TO:|END OF ACT|THE END)$/.test(cleanSpeaker(line));}
+function isParenthetical(line){return /^\(.+\)$/.test(line.trim());}
+function isBracketStage(line){return /^\[.+\]$/.test(line.trim());}
+function isSectionHeading(line){return /^(CAST OF CHARACTERS|CHARACTERS|SETTING|SYNOPSIS|NOTES|ACT I|ACT II|ACT III)$/.test(cleanSpeaker(line));}
+function isCharacterCue(line){
+  const raw=line.trim(); const t=cleanSpeaker(raw);
+  if(!t || t.length<2 || t.length>45) return false;
+  if(/[a-z]/.test(raw)) return false;
+  if(isSceneHeading(raw) || isTransition(raw) || isSectionHeading(raw)) return false;
+  if(/[.:?!]$/.test(raw)) return false;
+  return /^[A-Z0-9 ._'\-]+(\s*\([A-Z0-9 ._'\-]+\))?$/.test(t) && /[A-Z]/.test(t);
+}
+function pushStage(out,line){const t=line.trim(); if(t && !isMetadataLine(t) && !isSectionHeading(t)) out.push({speaker:'STAGE',role:'STAGE',line:t,stage:true});}
+function parseScript(text){
+  const rows=(text||'').replace(/^\uFEFF/,'').replace(/\r/g,'').split('\n');
+  const out=[]; let speaker=null; let role=null; let dialogue=[]; let parens=[]; let seenScene=false; let debug=[];
+  function flushDialogue(){
+    const joined=dialogue.join(' ').replace(/\s+/g,' ').trim();
+    if(speaker && joined){out.push({speaker:cleanSpeaker(speaker),role:role||baseSpeaker(speaker),line:joined,stage:false,preCue:parens.join(' ')}); debug.push('DIALOGUE '+cleanSpeaker(speaker)+': '+joined.slice(0,70));}
+    dialogue=[]; parens=[];
+  }
+  rows.forEach((raw,idx)=>{
+    const line=raw.trim();
+    if(!line){ if(speaker && dialogue.length===0) return; flushDialogue(); speaker=null; role=null; parens=[]; return; }
+    if(isMetadataLine(line) || isSectionHeading(line)){flushDialogue(); speaker=null; role=null; parens=[]; debug.push('SKIP metadata/section L'+(idx+1)+': '+line); return;}
+    if(isSceneHeading(line)){seenScene=true; flushDialogue(); speaker=null; role=null; parens=[]; pushStage(out,line); debug.push('SCENE L'+(idx+1)+': '+line); return;}
+    if(isTransition(line) || isBracketStage(line)){flushDialogue(); speaker=null; role=null; parens=[]; if(seenScene) pushStage(out,line); debug.push('STAGE transition/bracket L'+(idx+1)+': '+line); return;}
+    if(!seenScene && !isCharacterCue(line)){ debug.push('SKIP before first scene L'+(idx+1)+': '+line); return; }
+    const colon=line.match(/^([A-Za-z][A-Za-z0-9 ._'\-]{1,34})\s*:\s*(.*)$/);
+    if(colon && !isMetadataLine(line)){
+      flushDialogue(); speaker=cleanSpeaker(colon[1]); role=baseSpeaker(speaker);
+      const rest=(colon[2]||'').trim(); if(rest){dialogue.push(rest); flushDialogue(); speaker=null; role=null;}
+      debug.push('COLON CUE L'+(idx+1)+': '+line); return;
+    }
+    if(isCharacterCue(line)){flushDialogue(); speaker=cleanSpeaker(line); role=baseSpeaker(speaker); debug.push('CUE L'+(idx+1)+': '+speaker); return;}
+    if(speaker){ if(isParenthetical(line)){parens.push(line); debug.push('PAREN L'+(idx+1)+': '+line);} else {dialogue.push(line); debug.push('LINE L'+(idx+1)+': '+line.slice(0,70));} return; }
+    if(seenScene){pushStage(out,line); debug.push('ACTION L'+(idx+1)+': '+line.slice(0,70));}
+  });
+  flushDialogue();
+  assignActorLineNumbers(out);
+  lastDebug = `Input characters: ${(text||'').length}\nTotal parser items: ${out.length}\nActor rehearsal lines: ${out.filter(x=>!x.stage).length}\nRoles: ${[...new Set(out.filter(x=>!x.stage).map(x=>x.role))].join(', ') || 'none'}\n\nFirst parser events:\n` + debug.slice(0,160).join('\n');
+  $('debugText').textContent = lastDebug;
+  return out;
+}
+function dialogueCount(){return dialogueTotal();}
+function fillRoles(){const sel=$('role'); sel.innerHTML=''; speakers=[...new Set(parsed.filter(x=>!x.stage).map(x=>x.role||x.speaker))]; if(!speakers.length){sel.innerHTML='<option>No roles loaded</option>';return;} speakers.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;sel.appendChild(o);});}
+function parseFromBox(){const text=$('scriptInput').value; if(!text.trim()){$('loadStatus').textContent='No script text found. Choose a file or paste text first.';return;} loadMemoryForText(text); loadPacingTimesForText(text); parsed=parseScript(text); fillRoles(); $('end').value=dialogueTotal()||''; rebuildDialogueLineLookup(); const embedded=extractEmbeddedSections(text); if(embedded.length){mergeSections(embedded); $('sectionStatus').textContent=`Imported ${embedded.length} embedded section(s) from script text.`;} const d=dialogueCount(); if(d){$('loadStatus').innerHTML=`<strong>Parsed ${d} actor rehearsal lines</strong> across ${speakers.length} role(s). Cue/action items stay available as context but do not affect numbering.`; $('counter').textContent='Ready';} else {$('loadStatus').textContent='Could not find dialogue. Click Show parser debug and check that character names are uppercase on their own line.';} render();}
+$('scriptFile').addEventListener('change',()=>{const f=$('scriptFile').files && $('scriptFile').files[0]; $('fileStatus').textContent=f?`Selected: ${f.name} (${f.size} bytes). Click Load selected file.`:'No file selected.';});
+$('loadFileBtn').addEventListener('click',()=>{const f=$('scriptFile').files && $('scriptFile').files[0]; if(!f){$('fileStatus').textContent='Choose a .txt file first.';return;} $('fileStatus').textContent=`Reading ${f.name}...`; const reader=new FileReader(); reader.onerror=()=>{$('fileStatus').textContent='Could not read that file. Try opening it in a text editor and pasting the contents into the text box.';}; reader.onload=e=>{const text=String((e.target && e.target.result) || ''); $('scriptInput').value=text; $('fileStatus').textContent=`Loaded ${f.name}: ${text.length} characters. Parsing now.`; parseFromBox();}; reader.readAsText(f, 'UTF-8');});
+$('parseBtn').addEventListener('click',parseFromBox); $('clearBoxBtn').addEventListener('click',()=>{$('scriptInput').value='';}); $('debugBtn').addEventListener('click',()=>{$('debugPanel').classList.toggle('open'); $('debugBtn').textContent=$('debugPanel').classList.contains('open')?'Hide parser debug':'Show parser debug';}); $('clearAllBtn').addEventListener('click',()=>{parsed=[];speakers=[];practice=[];pos=0;state.correct.clear();state.failed.clear();state.needs.clear();memory={};memoryKey='';fillRoles();$('scriptInput').value='';$('loadStatus').textContent='No script parsed yet.';$('fileStatus').textContent='No file selected.';render();});
+let savedSections=[];
+function loadSavedSections(){try{savedSections=JSON.parse(localStorage.getItem('screenplayTrainerSectionsV2')||'[]')||[];}catch(e){savedSections=[];} updateSectionSelect();}
+function storeSavedSections(){try{localStorage.setItem('screenplayTrainerSectionsV2',JSON.stringify(savedSections));}catch(e){}}
+function updateSectionSelect(){const sel=$('sectionSelect'); if(!sel)return; sel.innerHTML=''; if(!savedSections.length){const o=document.createElement('option'); o.value=''; o.textContent='No sections yet'; sel.appendChild(o); return;} savedSections.forEach((s,i)=>{const o=document.createElement('option'); o.value=String(i); o.textContent=`${s.name} (${s.start}-${s.end})`; sel.appendChild(o);});}
+function parseSectionRows(text){
+  const sections=[];
+  const rows=String(text||'').replace(/^\uFEFF/,'').replace(/\r/g,'').split('\n');
+  for(const raw of rows){
+    const line=raw.trim();
+    if(!line || /^#/.test(line)) continue;
+    let m=line.match(/^SECTION\s*[:|\t]\s*(.+?)\s*[|\t]\s*(\d+)\s*-\s*(\d+)\s*(?:[|\t]\s*(.*))?$/i);
+    if(!m) m=line.match(/^(.+?)\s*[|\t]\s*(\d+)\s*-\s*(\d+)\s*(?:[|\t]\s*(.*))?$/);
+    if(!m) m=line.match(/^(.+?)\s*[|\t]\s*(\d+)\s*[|\t]\s*(\d+)\s*(?:[|\t]\s*(.*))?$/);
+    if(m){
+      const name=(m[1]||'').trim();
+      const start=parseInt(m[2],10);
+      const end=parseInt(m[3],10);
+      const beat=(m[4]||'').trim();
+      if(name && Number.isFinite(start) && Number.isFinite(end)) sections.push({name,start:Math.min(start,end),end:Math.max(start,end),beat});
+    }
+  }
+  return sections;
+}
+function extractEmbeddedSections(text){
+  const rows=String(text||'').split(/\r?\n/).filter(line=>/^\s*SECTION\s*[:|\t]/i.test(line));
+  return parseSectionRows(rows.join('\n'));
+}
+function mergeSections(incoming){
+  let changed=0;
+  incoming.forEach(sec=>{
+    const existing=savedSections.findIndex(s=>s.name.toLowerCase()===sec.name.toLowerCase());
+    const record={name:sec.name,start:sec.start,end:sec.end,beat:sec.beat||''};
+    if(existing>=0) savedSections[existing]=record; else savedSections.push(record);
+    changed++;
+  });
+  if(changed){storeSavedSections(); updateSectionSelect();}
+  return changed;
+}
+function exportSections(){
+  if(!savedSections.length){$('sectionStatus').textContent='No sections to export yet.'; return;}
+  const rows=['Section\tActor Lines\tBeat'];
+  savedSections.forEach(s=>rows.push(`${s.name}\t${s.start}-${s.end}\t${s.beat||''}`));
+  const blob=new Blob([rows.join('\n')+'\n'],{type:'text/plain'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='screenplay_sections.tsv';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(()=>{URL.revokeObjectURL(a.href); a.remove();},500);
+  $('sectionStatus').textContent=`Exported ${savedSections.length} section(s).`;
+}
+function importSectionsText(text){
+  let sections=[];
+  try{
+    const data=JSON.parse(text);
+    if(Array.isArray(data)) sections=data.map(s=>({name:String(s.name||s.section||'').trim(),start:parseInt(s.start,10),end:parseInt(s.end,10),beat:String(s.beat||'').trim()})).filter(s=>s.name && Number.isFinite(s.start) && Number.isFinite(s.end));
+  }catch(e){ sections=parseSectionRows(text); }
+  const n=mergeSections(sections);
+  $('sectionStatus').textContent=n?`Imported ${n} section(s).`:'No sections found. Use: Section Name TAB 1-24 TAB Beat, or SECTION|Name|1-24|Beat.';
+}
+
+function saveSection(){const name=($('sectionName').value||'').trim()||'Untitled section'; const start=Math.max(1,parseInt($('sectionStart').value||$('start').value||'1',10)); const end=Math.max(start,parseInt($('sectionEnd').value||$('end').value||String(dialogueTotal()||start),10)); const existing=savedSections.findIndex(s=>s.name.toLowerCase()===name.toLowerCase()); const previous=existing>=0?savedSections[existing]:{}; const record={name,start,end,beat:previous.beat||''}; if(existing>=0){savedSections[existing]=record; $('sectionSelect').value=String(existing);} else {savedSections.push(record); $('sectionSelect').value=String(savedSections.length-1);} storeSavedSections(); updateSectionSelect(); $('sectionStatus').textContent=`Saved section: ${name} (${start}-${end}). Set Repeat sequence, then Start section.`;}
+function selectedSection(){const i=parseInt($('sectionSelect').value,10); return Number.isFinite(i)?savedSections[i]:null;}
+function applySection(){const s=selectedSection(); if(!s){$('sectionStatus').textContent='Choose a saved section first.'; return false;} $('start').value=s.start; $('end').value=s.end; $('sectionStart').value=s.start; $('sectionEnd').value=s.end; $('sectionName').value=s.name; $('sectionStatus').textContent=`Applied section: ${s.name} (${s.start}-${s.end}).`; return true;}
+function deleteSection(){const i=parseInt($('sectionSelect').value,10); if(!Number.isFinite(i) || !savedSections[i]){$('sectionStatus').textContent='Choose a saved section first.'; return;} const name=savedSections[i].name; savedSections.splice(i,1); storeSavedSections(); updateSectionSelect(); $('sectionStatus').textContent=`Deleted section: ${name}.`;}
+function shuffleCopy(items){
+  const a=items.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function repeatItems(items,count){
+  const out=[];
+  items.forEach(x=>{for(let i=0;i<count;i++) out.push(x);});
+  return out;
+}
+function smartReviewItems(items){
+  const weighted=[];
+  items.forEach(x=>{
+    const score=memFor(x).score||0;
+    const weight=score<=-2?3:(score<2?2:1);
+    for(let i=0;i<weight;i++) weighted.push(x);
+  });
+  return shuffleCopy(weighted);
+}
+function recoveryTargetPos(item){
+  if(!$('recoveryRewind') || !$('recoveryRewind').checked || !item) return -1;
+  const back=Math.max(1,parseInt($('recoveryRewindLines')?.value||'2',10));
+  const targetLine=Math.max(1,(item.lineNo||1)-back);
+  for(let i=pos-1;i>=0;i--){
+    const p=practice[i];
+    if(p && (p.role||p.speaker)===(item.role||item.speaker) && (p.lineNo||0)<=targetLine) return i;
+  }
+  return pos>0?Math.max(0,pos-back):-1;
+}
+function buildPractice(){
+  const role=$('role').value;
+  let arr=parsed.map((x,i)=>({...x,index:i})).filter(x=>!x.stage && (x.role||x.speaker)===role);
+  const start=Math.max(1,parseInt($('start').value||'1',10));
+  const end=parseInt($('end').value||dialogueTotal(),10);
+  arr=arr.filter(x=>(x.lineNo||0)>=start && (x.lineNo||0)<=end);
+  const mode=$('mode').value;
+  if(mode==='failed') arr=arr.filter(x=>state.failed.has(x.index));
+  if(mode==='needs') arr=arr.filter(x=>state.needs.has(x.index));
+  const lineRepeats=Math.max(1,parseInt($('lineRepeats').value||'1',10));
+  const seqRepeats=Math.max(1,parseInt($('seqRepeats').value||'1',10));
+  practice=[];
+  for(let r=0;r<seqRepeats;r++){
+    if(mode==='random'){
+      practice.push(...repeatItems(shuffleCopy(arr),lineRepeats));
+    } else if(mode==='smart'){
+      practice.push(...repeatItems(smartReviewItems(arr),lineRepeats));
+    } else if(mode==='buildup'){
+      for(let endIdx=0; endIdx<arr.length; endIdx++){
+        practice.push(...repeatItems(arr.slice(0,endIdx+1),lineRepeats));
+      }
+    } else {
+      practice.push(...repeatItems(arr,lineRepeats));
+    }
+  }
+  clearPacingTimers(); pos=0; revealed=false; $('attempt').value=''; committedSpeechText=''; liveInterimText=''; if($('interimPreview')) $('interimPreview').textContent='';
+  const modeLabel = mode==='random' ? 'random order' : mode==='buildup' ? `line drill ${start}-${end}` : mode==='smart' ? 'smart review' : mode==='pacing' ? 'run-through / pacing' : mode==='failed' ? 'failed lines' : mode==='needs' ? 'needs-work lines' : 'in order';
+  if($('loadStatus') && arr.length){$('loadStatus').innerHTML=`Practice loaded: <strong>${arr.length}</strong> line(s), ${modeLabel}.`;} 
+  render();
+}
+function cueFor(item){
+  // Show only the immediate cue before this line.
+  // The reader strips speaker names before speaking it aloud.
+  if(!item) return '';
+  let cue='';
+  for(let i=item.index-1;i>=0;i--){
+    const p=parsed[i];
+    if(!p) continue;
+    if(p.stage){
+      const t=(p.line||'').trim();
+      if(t && !cue) cue='[Action] '+t;
+      continue;
+    }
+    const t=(p.line||'').trim();
+    if(t){
+      cue=(p.speaker||p.role||'Cue')+': '+t;
+      break;
+    }
+  }
+  if(item.preCue){
+    cue = cue ? cue+'\n'+item.preCue : item.preCue;
+  }
+  return cue || 'No previous cue.';
+}
+function speechTextForCue(cue){
+  // Example: display "REESE: Ready?" but only speak "Ready?".
+  if(!cue || cue==='No previous cue.') return '';
+  return cue.split('\n').map(line=>{
+    let t=line.trim();
+    t=t.replace(/^\[Action\]\s*/i,'');
+    t=t.replace(/^[A-Z][A-Z0-9 ._'-]{1,40}:\s*/, '');
+    return t;
+  }).filter(Boolean).join(' ');
+}
+function statusInfo(item){
+  if(!item) return {label:'Not started', cls:'status-new'};
+  if(state.failed.has(item.index)) return {label:'Failed', cls:'status-failed'};
+  if(state.needs.has(item.index)) return {label:'Needs work', cls:'status-needs'};
+  if(state.correct.has(item.index)) return {label:'Passed', cls:'status-correct'};
+  return {label:'Unmarked', cls:'status-new'};
+}
+function applyCardStatus(info){
+  const card=$('practiceCard');
+  const badge=$('lineStatus');
+  card.classList.remove('status-correct','status-failed','status-needs');
+  badge.className='pill statusBadge '+info.cls;
+  if(info.cls!=='status-new') card.classList.add(info.cls);
+  badge.textContent=info.label;
+}
+
+let resultAudioCtx=null;
+let resultAudioReady=false;
+function setSoundStatus(msg){ const el=$('soundStatus'); if(el) el.textContent=msg; }
+function soundVolume(){ const el=$('soundVolume'); const v=el?parseInt(el.value||'70',10):70; return Math.max(0,Math.min(100,v))/100; }
+function ensureResultAudio(){
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC){ setSoundStatus('This browser does not support generated sound cues.'); return null; }
+    if(!resultAudioCtx) resultAudioCtx=new AC();
+    if(resultAudioCtx.state==='suspended') resultAudioCtx.resume();
+    resultAudioReady=true;
+    setSoundStatus('Sound cues enabled.');
+    return resultAudioCtx;
+  }catch(e){ setSoundStatus('Could not enable sound cues: '+(e.message||e)); return null; }
+}
+function tone(freq,start,dur,type='sine',gain=0.08){
+  const ctx=ensureResultAudio(); if(!ctx) return;
+  const osc=ctx.createOscillator(); const g=ctx.createGain();
+  osc.type=type; osc.frequency.setValueAtTime(freq,ctx.currentTime+start);
+  g.gain.setValueAtTime(0.0001,ctx.currentTime+start);
+  g.gain.exponentialRampToValueAtTime(Math.max(0.0001,gain*soundVolume()),ctx.currentTime+start+0.015);
+  g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+start+dur);
+  osc.connect(g); g.connect(ctx.destination);
+  osc.start(ctx.currentTime+start); osc.stop(ctx.currentTime+start+dur+0.03);
+}
+function playResultSound(ok){
+  if(!$('resultSoundCue') || !$('resultSoundCue').checked) return;
+  if(!resultAudioReady){ setSoundStatus('Click Enable sound cues once to unlock ding/eh sounds.'); return; }
+  if(ok){ tone(880,0,0.12,'sine',0.09); tone(1320,0.09,0.16,'sine',0.075); }
+  else { tone(180,0,0.22,'sawtooth',0.055); }
+}
+
+function render(){
+  clearTimeout(timer);
+  clearPacingTimers();
+  const item=practice[pos];
+  $('progress').textContent=`Passed ${state.correct.size} | Failed ${state.failed.size} | Needs work ${state.needs.size}`;
+  if(!item){
+    $('counter').textContent=parsed.length?'No practice set':'No script loaded';
+    applyCardStatus(statusInfo(null));
+    $('cueText').textContent=parsed.length?'Choose role and click Start.':'Load and parse a script first.';
+    $('answerText').textContent=PLACEHOLDER;
+    $('answerText').className='hiddenline';
+    $('revealBtn').textContent='Reveal line';
+    return;
+  }
+  const paceSec=pacingSeconds(item);
+  $('counter').textContent=`Practice ${pos+1} of ${practice.length} | Line ${item.lineNo} of ${dialogueTotal()} | ${memoryDot(item)}${pacingMode() ? ' | pacing '+paceSec.toFixed(1)+'s' : ''}`;
+  if($('pacingLineSec')) $('pacingLineSec').value=paceSec.toFixed(2);
+  applyCardStatus(statusInfo(item));
+  $('cueText').textContent=cueFor(item);
+  $('answerText').textContent=revealed?item.line:PLACEHOLDER;
+  $('answerText').className=revealed?'':'hiddenline';
+  $('revealBtn').textContent=revealed?'Hide line':'Reveal line';
+  $('feedback').textContent='';
+  if(pacingMode()) handlePacingCard(item); else handleAutoCard(item);
+}
+function clearSpeechCheckTimer(){ if(speechCheckTimer){ clearTimeout(speechCheckTimer); speechCheckTimer=null; } }
+function current(){return practice[pos];} function next(){if(!practice.length)return; clearSpeechCheckTimer(); clearPacingTimers(); pos=Math.min(practice.length-1,pos+1); revealed=false; $('attempt').value=''; committedSpeechText=''; liveInterimText=''; if($('interimPreview')) $('interimPreview').textContent=''; render();} function prev(){if(!practice.length)return; clearSpeechCheckTimer(); clearPacingTimers(); pos=Math.max(0,pos-1); revealed=false; $('attempt').value=''; committedSpeechText=''; liveInterimText=''; if($('interimPreview')) $('interimPreview').textContent=''; render();}
+function mark(kind){const item=current(); if(!item)return; if(kind==='correct'){state.correct.add(item.index); state.failed.delete(item.index); updateMemory(item,'correct'); playResultSound(true); render(); $('feedback').innerHTML='<span class="ok">Correct. Moving on.</span>'; if($('autoAdvance').checked && pos<practice.length-1){timer=setTimeout(next,Math.max(0,parseInt($('advanceDelay').value||'0',10)));} return;} if(kind==='failed'){state.failed.add(item.index); state.correct.delete(item.index); updateMemory(item,'failed'); playResultSound(false); const target=pacingMode()? -1 : recoveryTargetPos(item); if(target>=0 && target<pos){pos=target; revealed=false; $('attempt').value=''; committedSpeechText=''; liveInterimText=''; render(); $('feedback').innerHTML='<span class="no">Marked failed. Recovery rewind moved you back a couple lines.</span>'; return;} render(); $('feedback').innerHTML='<span class="no">Marked failed.</span>'; return;} if(kind==='needs'){state.needs.add(item.index); updateMemory(item,'needs'); render(); $('feedback').innerHTML='<span class="need">Marked needs work.</span>'; return;}}
+function check(){const item=current(); if(!item)return; const ok=norm($('attempt').value)===norm(item.line); if(ok){mark('correct');} else {mark('failed'); if($('feedback')) $('feedback').innerHTML='<span class="no">Not quite. Marked failed. Use Reveal if needed.</span>';}}
+function autoCheckSpokenAttempt(){
+  clearSpeechCheckTimer();
+  if(!$('autoSpeechCheck') || !$('autoSpeechCheck').checked) return;
+  const item=current(); if(!item) return;
+  const typed=($('attempt').value||'').trim();
+  if(!typed) return;
+  const ok=norm(typed)===norm(item.line);
+  if(ok){
+    mark('correct');
+  } else {
+    playResultSound(false);
+    if($('clearWrongSpeech') && $('clearWrongSpeech').checked){
+      $('attempt').value='';
+      committedSpeechText='';
+      liveInterimText='';
+      if($('interimPreview')) $('interimPreview').textContent='';
+      $('feedback').innerHTML='<span class="no">Not quite. Cleared it. Try the line again.</span>';
+    } else {
+      $('feedback').innerHTML='<span class="no">Not quite. Try again or press Enter to mark failed.</span>';
+    }
+  }
+}
+function scheduleSpeechAutoCheck(){
+  if(!$('autoSpeechCheck') || !$('autoSpeechCheck').checked) return;
+  clearSpeechCheckTimer();
+  lastSpeechActivity=Date.now();
+  const delay=Math.max(500,parseInt($('speechPauseMs')?.value||'1400',10));
+  speechCheckTimer=setTimeout(()=>{
+    if(ignoreSpeechResults || pausedForReaderSpeech) { scheduleSpeechAutoCheck(); return; }
+    autoCheckSpokenAttempt();
+  }, delay);
+}
+let availableVoices=[];
+function populateVoices(){
+  if(!('speechSynthesis' in window)){ $('voiceStatus').textContent='Speech synthesis is not available in this browser.'; return; }
+  availableVoices = speechSynthesis.getVoices() || [];
+  const sel=$('voiceSelect');
+  const current=sel.value;
+  sel.innerHTML='<option value="">Default browser voice</option>';
+  availableVoices.forEach((v,i)=>{
+    const o=document.createElement('option');
+    o.value=String(i);
+    o.textContent=`${v.name} (${v.lang})${v.default?' default':''}`;
+    sel.appendChild(o);
+  });
+  if(current && availableVoices[Number(current)]) sel.value=current;
+  $('voiceStatus').textContent=availableVoices.length ? `${availableVoices.length} reader voice(s) available.` : 'No extra voices found yet. Try clicking Test voice once, then reopen the dropdown.';
+}
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+let recognition=null;
+let listening=false;
+let keepListening=false;
+let micReady=false;
+let micStream=null;
+let ignoreSpeechResults=false;
+let recognitionStartedOnce=false;
+let pausedForReaderSpeech=false;
+let resumeListeningAfterReader=false;
+let committedSpeechText='';
+let liveInterimText='';
+let speechCheckTimer=null;
+let lastSpeechActivity=0;
+let lastReaderText='';
+function listenAvailable(){ return !!SpeechRecognition; }
+function setListenStatus(text){ const el=$('listenStatus'); if(el) el.textContent=text; }
+async function enableMicrophone(){
+  if(!listenAvailable()){ setListenStatus('Speech recognition is not available in this browser. Try Chrome or Edge.'); return false; }
+  if(micReady){ setListenStatus('Microphone is already enabled for this page.'); return true; }
+  if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
+    micReady=true;
+    setListenStatus('Microphone permission API is not available, but speech recognition may still work. Click Start listening.');
+    return true;
+  }
+  try{
+    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+    micReady=true;
+    keepListening=true;
+    setListenStatus('Microphone enabled. Leave Keep listener open on to avoid repeated permission prompts.');
+    if($('enableMicBtn')) $('enableMicBtn').textContent='Microphone enabled';
+    return true;
+  } catch(e){
+    micReady=false;
+    setListenStatus('Microphone was not enabled. Allow mic access in the browser, then click Enable microphone again.');
+    return false;
+  }
+}
+function stopListening(){
+  clearSpeechCheckTimer();
+  keepListening=false;
+  if(recognition && listening){ try{ recognition.stop(); }catch(e){} }
+  listening=false;
+  $('practiceCard')?.classList.remove('listenLive');
+  if($('listenBtn')) $('listenBtn').textContent='Start listening';
+  setListenStatus(listenAvailable() ? 'Listener off. Microphone permission remains with the page if the browser allows it.' : 'Speech recognition is not available in this browser. Try Chrome or Edge.');
+}
+function ensureRecognition(){
+  if(recognition) return recognition;
+  recognition=new SpeechRecognition();
+  recognition.lang='en-US';
+  recognition.continuous=true;
+  recognition.interimResults=true;
+  recognition.onstart=()=>{
+    listening=true;
+    recognitionStartedOnce=true;
+    committedSpeechText=$('attempt').value.trim();
+    liveInterimText='';
+    $('practiceCard')?.classList.add('listenLive');
+    $('listenBtn').textContent='Listening...';
+    setListenStatus('Listening. Interim speech is shown live, but only final phrases are saved.');
+  };
+  recognition.onerror=(e)=>{
+    const err=e.error||'unknown';
+    if(err==='not-allowed' || err==='service-not-allowed') micReady=false;
+    setListenStatus('Listener error: '+err+'. If permission repeats, open this from Chrome/Edge and allow microphone for this file/site.');
+  };
+  recognition.onend=()=>{
+    listening=false;
+    $('practiceCard')?.classList.remove('listenLive');
+    $('listenBtn').textContent='Start listening';
+    if(pausedForReaderSpeech){
+      setListenStatus('Reader is speaking. Listener is muted so it does not capture the cue.');
+      return;
+    }
+    if(keepListening && $('autoListen')?.checked && current()){
+      setListenStatus('Listener hiccuped, reopening without changing cards...');
+      setTimeout(()=>startListening(true),350);
+    } else {
+      setListenStatus(micReady ? 'Listener paused. Click Start listening to resume.' : 'Listener off. Click Enable microphone before auto-listen.');
+    }
+  };
+  function stripRecentlyReadText(raw){
+    const text=(raw||'').trim();
+    if(!text || !lastReaderText) return text;
+    const rawTokens=norm(text).split(' ').filter(Boolean);
+    const cueTokens=norm(lastReaderText).split(' ').filter(Boolean);
+    if(!rawTokens.length || !cueTokens.length) return text;
+    const rawNorm=rawTokens.join(' ');
+    const cueNorm=cueTokens.join(' ');
+    if(rawNorm===cueNorm) return '';
+    let fullPrefix=true;
+    for(let i=0;i<cueTokens.length;i++){
+      if(rawTokens[i]!==cueTokens[i]){ fullPrefix=false; break; }
+    }
+    if(fullPrefix && rawTokens.length>cueTokens.length){
+      return rawTokens.slice(cueTokens.length).join(' ');
+    }
+    const maxTail=Math.min(cueTokens.length, rawTokens.length);
+    for(let k=maxTail;k>=2;k--){
+      const cueTail=cueTokens.slice(cueTokens.length-k).join(' ');
+      const rawHead=rawTokens.slice(0,k).join(' ');
+      if(cueTail===rawHead){
+        return rawTokens.slice(k).join(' ');
+      }
+    }
+    return text;
+  }
+
+  recognition.onresult=(event)=>{
+    if(ignoreSpeechResults){
+      if($('interimPreview')) $('interimPreview').textContent='';
+      clearSpeechCheckTimer();
+      return;
+    }
+    let finalChunk='';
+    let interimChunk='';
+    for(let i=event.resultIndex;i<event.results.length;i++){
+      const txt=(event.results[i][0].transcript||'').trim();
+      if(!txt) continue;
+      if(event.results[i].isFinal){ finalChunk += (finalChunk ? ' ' : '') + txt; }
+      else { interimChunk += (interimChunk ? ' ' : '') + txt; }
+    }
+    if(finalChunk){
+      finalChunk=stripRecentlyReadText(finalChunk);
+      if(!finalChunk){
+        if($('interimPreview')) $('interimPreview').textContent='Ignored reader audio.';
+        clearSpeechCheckTimer();
+        return;
+      }
+      committedSpeechText=(committedSpeechText + ' ' + finalChunk).replace(/\s+/g,' ').trim();
+      liveInterimText='';
+      $('attempt').value=committedSpeechText;
+      if($('interimPreview')) $('interimPreview').textContent='';
+      scheduleSpeechAutoCheck();
+    } else {
+      liveInterimText=stripRecentlyReadText(interimChunk);
+      if($('interimPreview')) $('interimPreview').textContent=liveInterimText ? 'Listening: '+liveInterimText : '';
+      if(liveInterimText) scheduleSpeechAutoCheck();
+    }
+  };
+  return recognition;
+}
+function startListening(persistent=false){
+  if(!listenAvailable()){ setListenStatus('Speech recognition is not available in this browser. Try Chrome or Edge.'); return; }
+  const item=current(); if(!item){ setListenStatus('Start before listening.'); return; }
+  if(listening) return;
+  if(!micReady){
+    setListenStatus('Click Enable microphone once first. Browsers block automatic listening until you approve the mic.');
+    return;
+  }
+  keepListening=!!persistent || !!$('autoListen')?.checked;
+  const rec=ensureRecognition();
+  try{ rec.start(); } catch(e){ setListenStatus('Listener is already starting or blocked. Try once more.'); }
+}
+function speak(text, onDone){
+  if(!('speechSynthesis' in window)){ if(typeof onDone==='function') onDone(); return; }
+  speechSynthesis.cancel();
+  lastReaderText=(text||'').trim();
+
+  // Soft-mute the listener instead of stopping the recognition session.
+  // Stopping/restarting SpeechRecognition can trigger repeated mic prompts in some browsers,
+  // especially from a local file. While the reader is speaking, recognition may still hear
+  // audio, but we ignore every result until a short grace period after playback ends.
+  ignoreSpeechResults=true;
+  pausedForReaderSpeech=true;
+  resumeListeningAfterReader = !!($('autoListen')?.checked && keepListening && current());
+  if($('interimPreview')) $('interimPreview').textContent='';
+  clearSpeechCheckTimer();
+
+  const u=new SpeechSynthesisUtterance(text);
+  const idx=$('voiceSelect') ? $('voiceSelect').value : '';
+  if(idx!=='' && availableVoices[Number(idx)]) u.voice=availableVoices[Number(idx)];
+  u.rate=Math.max(0.5,Math.min(2,parseFloat($('voiceRate')?.value||'0.95')));
+  u.pitch=Math.max(0,Math.min(2,parseFloat($('voicePitch')?.value||'1')));
+  const done=()=>{
+    setTimeout(()=>{
+      ignoreSpeechResults=false;
+      pausedForReaderSpeech=false;
+      const shouldStart=!!(resumeListeningAfterReader && !listening && current());
+      resumeListeningAfterReader=false;
+      if(shouldStart){ setTimeout(()=>startListening(true),250); }
+      else if(listening){ setListenStatus('Listening. Reader finished.'); }
+      if(typeof onDone==='function') onDone();
+    },900);
+  };
+  u.onend=done;
+  u.onerror=done;
+  setListenStatus(listening ? 'Reader speaking. Listener stays open, but input is ignored.' : 'Reader speaking.');
+  speechSynthesis.speak(u);
+}
+let lastPacingCardKey='';
+function pacingGradeAndAdvance(item){
+  if(!item || !pacingMode()) return;
+  const spoken=($('attempt').value||'').trim();
+  const shouldGrade=pacingShouldGrade();
+  if(shouldGrade){
+    const ok=spoken && norm(spoken)===norm(item.line);
+    if(ok){state.correct.add(item.index); state.failed.delete(item.index); updateMemory(item,'correct'); playResultSound(true);}
+    else {state.failed.add(item.index); state.correct.delete(item.index); updateMemory(item,'failed'); playResultSound(false);}
+  }
+  if(pos<practice.length-1){
+    pos++;
+    revealed=false;
+    $('attempt').value=''; committedSpeechText=''; liveInterimText='';
+    if($('interimPreview')) $('interimPreview').textContent='';
+    render();
+  } else {
+    clearPacingTimers();
+    $('feedback').innerHTML='<span class="ok">Pacing run complete.</span>';
+    if(listening && pacingMode()) stopListening();
+  }
+}
+function startPacingPause(item){
+  const sec=pacingSeconds(item);
+  const endAt=Date.now()+sec*1000;
+  const inputStyle=($('pacingInputStyle')?.value||'speaking');
+  $('feedback').innerHTML='<span class="need">Your line. '+sec.toFixed(1)+' sec pause ('+inputStyle+').</span>';
+  if(inputStyle==='speaking' && $('pacingListenCheck') && $('pacingListenCheck').checked){
+    if(micReady) startListening(true);
+    else setListenStatus('Pacing mode can grade spoken lines after you click Enable microphone once.');
+  }
+  pacingCountdownTimer=setInterval(()=>{
+    const left=Math.max(0,(endAt-Date.now())/1000);
+    const inputStyle=($('pacingInputStyle')?.value||'speaking');
+    if($('feedback')) $('feedback').innerHTML='<span class="need">Your line. '+left.toFixed(1)+' sec left ('+inputStyle+').</span>';
+  },200);
+  pacingTimer=setTimeout(()=>{clearPacingTimers(); pacingGradeAndAdvance(item);}, Math.max(300,sec*1000));
+}
+function handlePacingCard(item){
+  if(!item) return;
+  const key=String(pos)+'|'+String(item.index)+'|pacing';
+  if(key===lastPacingCardKey) return;
+  lastPacingCardKey=key;
+  const cue=speechTextForCue(cueFor(item));
+  keepListening=!!($('pacingListenCheck') && $('pacingListenCheck').checked);
+  if(cue){speak(cue,()=>{startPacingPause(item);});}
+  else {startPacingPause(item);}
+}
+let lastAutoCardKey='';
+function handleAutoCard(item){
+  if(!item) return;
+  const key=String(pos)+'|'+String(item.index);
+  if(key===lastAutoCardKey) return;
+  lastAutoCardKey=key;
+  const shouldRead=$('autoReadCue') && $('autoReadCue').checked;
+  const shouldListen=$('autoListen') && $('autoListen').checked;
+  const cue=cueFor(item);
+  const cueSpeech=speechTextForCue(cue);
+  if(shouldListen) keepListening=true;
+  if(shouldRead && cueSpeech){
+    speak(cueSpeech,()=>{ if(!listening && shouldListen) setTimeout(()=>startListening(true),300); });
+  } else if(shouldListen){
+    setTimeout(()=>startListening(true),150);
+  }
+}
+
+$('testVoiceBtn').addEventListener('click',()=>{populateVoices(); speak('This is the selected reader voice.');});
+$('enableSoundBtn').addEventListener('click',()=>{ensureResultAudio();});
+$('testPassSoundBtn').addEventListener('click',()=>{ensureResultAudio(); playResultSound(true);});
+$('testFailSoundBtn').addEventListener('click',()=>{ensureResultAudio(); playResultSound(false);});
+$('savePacingTimeBtn').addEventListener('click',saveCurrentPacingTime);
+$('useCurrentRangeBtn').addEventListener('click',()=>{$('sectionStart').value=$('start').value||'1'; $('sectionEnd').value=$('end').value||String(dialogueTotal()||1); $('sectionStatus').textContent='Copied current start/end line numbers into the section fields.';});
+$('saveSectionBtn').addEventListener('click',saveSection);
+$('exportSectionsBtn').addEventListener('click',exportSections);
+$('importSectionsBtn').addEventListener('click',()=>{$('sectionsFile').click();});
+$('sectionsFile').addEventListener('change',()=>{const f=$('sectionsFile').files && $('sectionsFile').files[0]; if(!f){return;} const reader=new FileReader(); reader.onload=e=>importSectionsText(String((e.target&&e.target.result)||'')); reader.onerror=()=>{$('sectionStatus').textContent='Could not read sections file.';}; reader.readAsText(f,'UTF-8'); $('sectionsFile').value='';});
+$('applySectionBtn').addEventListener('click',applySection);
+$('startSectionBtn').addEventListener('click',()=>{if(applySection()){lastAutoCardKey=''; buildPractice();}});
+$('deleteSectionBtn').addEventListener('click',deleteSection);
+$('startBtn').addEventListener('click',()=>{lastAutoCardKey=''; lastPacingCardKey=''; buildPractice();}); $('needsOnlyBtn').addEventListener('click',()=>{$('mode').value='needs'; lastAutoCardKey=''; buildPractice();}); $('clearNeedsBtn').addEventListener('click',()=>{state.needs.clear();render();}); $('clearFailedBtn').addEventListener('click',()=>{state.failed.clear();render();}); $('prevBtn').addEventListener('click',prev); $('nextBtn').addEventListener('click',next); $('checkBtn').addEventListener('click',check); $('speakBtn').addEventListener('click',()=>{const item=current(); if(item)speak(item.line);}); $('enableMicBtn').addEventListener('click',enableMicrophone); $('listenBtn').addEventListener('click',()=>{ if(listening) stopListening(); else startListening(true); }); $('stopListenBtn').addEventListener('click',stopListening); $('revealBtn').addEventListener('click',()=>{const item=current(); if(!item)return; if(!revealed) updateMemory(item,'reveal'); revealed=!revealed; render();}); $('correctBtn').addEventListener('click',()=>mark('correct')); $('failedBtn').addEventListener('click',()=>mark('failed')); $('needsBtn').addEventListener('click',()=>mark('needs'));
+$('attempt').addEventListener('keydown',e=>{if(e.key==='Enter' && !e.shiftKey){e.preventDefault();check();}});
+document.addEventListener('keydown',e=>{const tag=(e.target&&e.target.tagName)||''; const typing=tag==='TEXTAREA' || tag==='INPUT' || tag==='SELECT'; if(typing && !(e.target.id==='attempt' && e.key==='Enter')) return; if(e.key==='ArrowRight'){e.preventDefault();next();} if(e.key==='ArrowLeft'){e.preventDefault();prev();} if(e.key===' ' && !typing){e.preventDefault();const item=current();if(item)speak(item.line);} const k=e.key.toLowerCase(); if(k==='p'){mark('correct');} if(k==='f'){mark('failed');} if(k==='w'){mark('needs');} if(k==='s'){const item=current(); if(item)speak(item.line);} if(k==='l'){listening?stopListening():startListening(true);} if(k==='r'){if(current()){revealed=!revealed;render();}}
+});
+
+function setupLineLookup(){
+  document.querySelectorAll('.lookupRangeBtn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const start=btn.getAttribute('data-start');
+      const end=btn.getAttribute('data-end');
+      if($('start')) $('start').value=start;
+      if($('end')) $('end').value=end;
+      if($('sectionStart')) $('sectionStart').value=start;
+      if($('sectionEnd')) $('sectionEnd').value=end;
+      const sectionName=(btn.closest('tr')?.children?.[0]?.textContent||'Selected section').trim();
+      if($('sectionName')) $('sectionName').value=sectionName;
+      if($('lookupStatus')) $('lookupStatus').textContent=`Loaded ${sectionName}: lines ${start}-${end}. Click Start to practice or save it as a section in Advanced settings.`;
+    });
+  });
+}
+
+function escapeHtml(text){
+  return String(text||'').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function setRangeFromNavigator(startLine,endLine,label){
+  const total=dialogueTotal()||1;
+  const start=Math.max(1,Math.min(total,parseInt(startLine,10)||1));
+  const end=Math.max(start,Math.min(total,parseInt(endLine,10)||start));
+  if($('start')) $('start').value=start;
+  if($('end')) $('end').value=end;
+  if($('sectionStart')) $('sectionStart').value=start;
+  if($('sectionEnd')) $('sectionEnd').value=end;
+  if($('sectionName')) $('sectionName').value=label||`Lines ${start}-${end}`;
+}
+function rebuildDialogueLineLookup(){
+  const body=$('dialogueLineLookupBody');
+  if(!body) return;
+  const lines=parsed.filter(x=>!x.stage);
+  if(!lines.length){
+    body.innerHTML='<tr><td colspan="5">Load and parse a script to build the rehearsal navigator.</td></tr>';
+    if($('lineLookupStatus')) $('lineLookupStatus').textContent='Load and parse a script to search numbered lines.';
+    return;
+  }
+  body.innerHTML=lines.map(x=>{
+    const n=x.lineNo||'';
+    const role=x.role||x.speaker||'';
+    const parenthetical=x.preCue||'';
+    const hay=(String(n)+' '+role+' '+parenthetical+' '+x.line).toLowerCase();
+    return `<tr data-line="${n}" data-search="${escapeHtml(hay)}"><td>${n}</td><td>${escapeHtml(role)}</td><td>${escapeHtml(parenthetical)}</td><td>${escapeHtml(x.line)}</td><td><div class="lineActions"><button class="btn lineUseBtn" type="button" data-action="single" data-line="${n}">Use line</button><button class="btn lineUseBtn" type="button" data-action="from" data-line="${n}">Practice from here</button><button class="btn lineUseBtn" type="button" data-action="to" data-line="${n}">Drill to here</button><button class="btn lineUseBtn" type="button" data-action="around" data-line="${n}">Surrounding lines</button></div></td></tr>`;
+  }).join('');
+  filterDialogueLineLookup();
+}
+function filterDialogueLineLookup(){
+  const search=$('lineLookupSearch');
+  const rows=[...document.querySelectorAll('#dialogueLineLookupBody tr[data-search]')];
+  const q=(search?.value||'').trim().toLowerCase();
+  rows.forEach(r=>{
+    const hay=(r.getAttribute('data-search')||'')+' '+(r.getAttribute('data-line')||'');
+    r.classList.toggle('hideLine', !!q && !hay.includes(q));
+  });
+  const visible=rows.filter(r=>!r.classList.contains('hideLine')).length;
+  if($('lineLookupStatus')) $('lineLookupStatus').textContent=q ? `${visible} matching line(s). Choose an action.` : `${rows.length} line(s) loaded. Use line, practice from here, drill to here, or load surrounding lines.`;
+}
+function setupDialogueLineLookup(){
+  const search=$('lineLookupSearch');
+  const clear=$('clearLineLookupSearch');
+  if(search) search.addEventListener('input',filterDialogueLineLookup);
+  if(clear) clear.addEventListener('click',()=>{ if(search) search.value=''; filterDialogueLineLookup(); search?.focus(); });
+  const body=$('dialogueLineLookupBody');
+  if(body){
+    body.addEventListener('click',e=>{
+      const btn=e.target.closest('.lineUseBtn');
+      if(!btn) return;
+      const line=parseInt(btn.getAttribute('data-line')||'1',10);
+      const action=btn.getAttribute('data-action')||'single';
+      const total=dialogueTotal()||line;
+      const tr=btn.closest('tr');
+      const role=(tr?.children?.[1]?.textContent||'').trim();
+      const text=(tr?.children?.[3]?.textContent||'').trim();
+      let start=line, end=line, label=`Line ${line} - ${role}`, msg=`Loaded line ${line}: ${role} - ${text.slice(0,90)}${text.length>90?'...':''}`;
+      if(action==='from'){
+        start=line; end=parseInt($('end')?.value||String(total),10)||total; if(end<start) end=total;
+        label=`From line ${line} - ${role}`; msg=`Set range from line ${start} to ${end}.`;
+      } else if(action==='to'){
+        start=parseInt($('start')?.value||'1',10)||1; end=line; if(start>end) start=1;
+        label=`Through line ${line} - ${role}`; msg=`Set range from line ${start} to ${end}.`;
+      } else if(action==='around'){
+        start=Math.max(1,line-3); end=Math.min(total,line+3);
+        label=`Surrounding line ${line} - ${role}`; msg=`Loaded surrounding lines ${start}-${end}.`;
+      }
+      setRangeFromNavigator(start,end,label);
+      if($('lineLookupStatus')) $('lineLookupStatus').textContent=msg;
+    });
+  }
+  rebuildDialogueLineLookup();
+}
+
+populateVoices(); if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=populateVoices;} if(!listenAvailable()){setListenStatus('Speech recognition is not available in this browser. Try Chrome or Edge.');}
+setupLineLookup(); setupDialogueLineLookup(); loadSavedSections(); fillRoles(); render();
+</script>
+</body>
+</html>
