@@ -3,7 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Line Rehearsal Trainer v35</title>
+<title>Line Rehearsal Trainer v37</title>
+<link rel="manifest" href="manifest.json?v=37">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v=37">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=37">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=37">
+<meta name="theme-color" content="#0b0f16">
 <style>
 :root{--bg:#0b0f16;--panel:#121824;--panel2:#151d2a;--text:#edf3ff;--muted:#9fb0ca;--line:#263247;--blue:#7ab7ff;--green:#7ee787;--red:#ff7b8a;--yellow:#f6d365;--purple:#d2a8ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:22px}h1{margin:0 0 4px;font-size:28px}h2{margin:22px 0 10px;font-size:20px}.sub,.muted{color:var(--muted)}.card{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:13px;color:#cbd7ed}input,select,textarea{width:100%;background:#0c111a;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit}textarea{min-height:210px;resize:vertical}.btn{border:1px solid var(--line);background:#202838;color:#fff;border-radius:10px;padding:10px 13px;cursor:pointer;font-weight:750}.btn:hover{filter:brightness(1.08)}.btn:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--blue);color:#06101e;border-color:transparent}.good{background:var(--green);color:#061506;border-color:transparent}.bad{background:var(--red);color:#210809;border-color:transparent}.warn{background:var(--yellow);color:#1a1200;border-color:transparent}.purple{background:var(--purple);color:#16091f;border-color:transparent}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#101723;color:#dce7ff;border-radius:999px;padding:5px 10px;font-size:13px}.status{color:var(--muted);font-size:14px}.status strong{color:#fff}.helpbox{background:#101723;border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}.helpbox pre,.debug pre{white-space:pre-wrap;background:#080c13;border:1px solid #242e40;border-radius:10px;padding:10px;margin:8px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.small{font-size:13px;color:#aebbd3}.yourline{font-size:24px;font-weight:850;min-height:42px;margin:8px 0 12px}.hiddenline{display:inline-block;filter:blur(6px);user-select:none;color:#b7c4d9;font-style:italic;font-weight:850;letter-spacing:.08em}.cue{white-space:pre-wrap;color:#dce7ff;margin:8px 0 14px}.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:#111722;color:#fff}.shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:6px;color:#cbd7ed;font-size:14px}.ok{color:#8df29d}.no{color:#ff999d}.need{color:#ffe08b}.inlineControls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.inlineControls label{display:flex;gap:7px;align-items:center;color:#cbd7ed;font-size:14px}.inlineControls input[type="number"]{width:92px;padding:7px 9px}.fileRow{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.fileRow .field{flex:1 1 280px}.debug{display:none}.debug.open{display:block}.hide{display:none!important}.practiceCard{transition:border-color .15s,box-shadow .15s}.practiceCard.status-correct{border-color:rgba(126,231,135,.85);box-shadow:0 0 0 2px rgba(126,231,135,.12)}.practiceCard.status-failed{border-color:rgba(255,123,138,.9);box-shadow:0 0 0 2px rgba(255,123,138,.12)}.practiceCard.status-needs{border-color:rgba(246,211,101,.9);box-shadow:0 0 0 2px rgba(246,211,101,.13)}.statusBadge{font-weight:850;border-width:2px}.statusBadge.status-correct{background:rgba(126,231,135,.16);border-color:rgba(126,231,135,.85);color:#9ff5aa}.statusBadge.status-failed{background:rgba(255,123,138,.16);border-color:rgba(255,123,138,.85);color:#ff9aa5}.statusBadge.status-needs{background:rgba(246,211,101,.16);border-color:rgba(246,211,101,.85);color:#ffe08b}.statusBadge.status-new{background:#101723;color:#dce7ff}.statusLegend{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}.listenLive{border-color:rgba(122,183,255,.85)!important;box-shadow:0 0 0 2px rgba(122,183,255,.14)}.interimPreview{min-height:22px;color:#9fb0ca;font-size:14px;margin-top:6px}.sectionTools{background:#101723;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:14px}.sectionTools h3{margin:0 0 10px;font-size:16px}.sectionTools .grid{grid-template-columns:2fr 1fr 1fr 1.2fr 1.2fr}
 /* v35 polished advanced settings */
@@ -15,7 +20,6 @@
 .advancedTitle{display:flex;align-items:center;gap:14px}
 .advancedIcon{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#ff4454,#b51d2a);box-shadow:0 8px 28px rgba(255,68,84,.22);font-size:23px}
 .advancedTitle h2{margin:0;font-size:24px}.advancedTitle p{margin:2px 0 0;color:#b7c5dc;font-size:14px}
-.settingsClose{border:1px solid #2a3548;background:#172132;color:#fff;border-radius:14px;padding:9px 13px;font-weight:800;cursor:pointer}.settingsClose:hover{filter:brightness(1.12)}
 .settingsBody{padding:14px 18px 18px}
 .settingsCards{display:grid;grid-template-columns:1fr 1fr;gap:12px}.settingsCard{background:linear-gradient(180deg,#151e2b,#111925);border:1px solid #2a3548;border-radius:14px;padding:16px;box-shadow:inset 0 1px rgba(255,255,255,.03)}
 .settingsCard.full{grid-column:1/-1}.settingsCard h3{margin:0 0 14px;color:#ff5b68;text-transform:uppercase;letter-spacing:.04em;font-size:14px;display:flex;align-items:center;gap:8px}.settingsCard h3 span{font-size:18px}
@@ -29,8 +33,6 @@
 
 summary.settingsSummary{cursor:pointer;font-weight:850;font-size:18px;list-style:none}
 summary.settingsSummary::-webkit-details-marker{display:none}
-summary.settingsSummary:after{content:'Open';float:right;font-size:13px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:#101723}
-details[open] summary.settingsSummary:after{content:'Close'}
 .topPractice{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}
 .bigCue{font-size:18px}
 .mainControls .btn{font-size:16px;padding:12px 15px}
@@ -52,11 +54,49 @@ details[open] summary.settingsSummary:after{content:'Close'}
 .lineActions .btn{padding:6px 8px;font-size:12px}
 @media(max-width:720px){.lookupTable,.lookupTable tbody,.lookupTable tr,.lookupTable td,.lookupTable th{display:block}.lookupTable thead{display:none}.lookupTable tr{border:1px solid var(--line);border-radius:12px;margin:10px 0;background:#101723;overflow:hidden}.lookupTable td{border:0;border-bottom:1px solid var(--line)}.lookupTable td:last-child{border-bottom:0}.lookupTable td:before{display:block;color:var(--muted);font-size:12px;font-weight:750;margin-bottom:3px}.lookupTable td:nth-child(1):before{content:'Section'}.lookupTable td:nth-child(2):before{content:'Actor lines'}.lookupTable td:nth-child(3):before{content:'Beat'}.lookupTable td:nth-child(4):before{content:'Action'}}
 
+
+/* v37 unified theater-panel style */
+body{background:radial-gradient(circle at top,#172133 0,#0b0f16 42%,#070a10 100%);}
+main{max-width:1220px;}
+h1{font-size:32px;letter-spacing:-.03em;}
+.card{background:linear-gradient(180deg,#151e2b,#101722);border:1px solid #2a3548;border-radius:18px;box-shadow:0 14px 44px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.03);}
+.card h2{margin-top:0;font-size:22px;letter-spacing:-.02em;}
+.helpbox,.sectionTools{background:linear-gradient(180deg,#111a27,#0e1520);border-color:#2a3548;border-radius:14px;}
+input,select,textarea{background:#0d131e;border-color:#2c384c;border-radius:12px;box-shadow:inset 0 1px rgba(255,255,255,.025);}
+textarea{min-height:160px;}
+.field label{font-weight:750;color:#dce7ff;}
+.btn{background:linear-gradient(180deg,#202b3d,#182235);border-color:#2d3a50;border-radius:14px;box-shadow:inset 0 1px rgba(255,255,255,.05);}
+.btn.primary{background:linear-gradient(135deg,#ff4051,#b8202e);color:#fff;border-color:#e24d5b;}
+.btn.purple{background:linear-gradient(135deg,#8057e8,#5634a8);color:#fff;border-color:#9673ff;}
+.btn.good{background:linear-gradient(135deg,#44c46b,#278347);color:#061506;}
+.btn.bad{background:linear-gradient(135deg,#ff5868,#b8202e);color:#fff;}
+.btn.warn{background:linear-gradient(135deg,#f6d365,#c7901e);color:#1a1200;}
+.pill{background:#101723;border-color:#2a3548;border-radius:999px;}
+#sectionLookup,#dialogueLineLookup,#advancedSettings{padding:0;overflow:hidden;}
+#sectionLookup>summary,#dialogueLineLookup>summary{padding:18px 22px;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));border-bottom:1px solid #263247;color:#fff;}
+#sectionLookup[open],#dialogueLineLookup[open]{box-shadow:0 18px 60px rgba(0,0,0,.25);}
+#sectionLookup>div,#dialogueLineLookup>div,#sectionLookup>table,#dialogueLineLookup>table{margin-left:18px;margin-right:18px;}
+#sectionLookup>table,#dialogueLineLookup>table{width:calc(100% - 36px);}
+#sectionLookup .lookupNote,#dialogueLineLookup .lookupNote{margin-top:14px;}
+.lookupTable th{background:#101723;color:#fff;border-color:#2a3548;}
+.lookupTable td{border-color:#2a3548;background:rgba(16,23,35,.35);}
+.practiceCard{background:linear-gradient(180deg,#172132,#101722);}
+.cue{background:#0d131e;border:1px solid #2a3548;border-radius:14px;padding:14px;}
+.yourline{background:#0d131e;border:1px solid #2a3548;border-radius:14px;padding:14px;}
+.settingsSummary:after, summary.settingsSummary:after, details[open] summary.settingsSummary:after{content:none!important;display:none!important;}
+.advancedHeader{padding:18px 22px;}
+.advancedTitle h2{font-size:26px;}
+.settingsCard{border-radius:18px;}
+.settingsCard h3{font-size:15px;}
+.settingsActions .btn{font-weight:850;}
+#loadStatus,#fileStatus,#voiceStatus,#sectionStatus,#lookupStatus,#lineLookupStatus,#listenStatus,#feedback,#progress{font-size:14px;}
+@media(max-width:720px){main{padding:12px}.card{border-radius:16px;padding:14px}#sectionLookup,#dialogueLineLookup,#advancedSettings{padding:0}.advancedTitle h2{font-size:21px}.advancedIcon{width:38px;height:38px}.buttons .btn{width:100%}}
+
 </style>
 </head>
 <body>
 <main>
-<h1>Line Rehearsal Trainer <span class="pill">v35 PWA</span></h1>
+<h1>Line Rehearsal Trainer <span class="pill">v37 PWA</span></h1>
 <p class="sub">Load any plain-text screenplay. No built-in script. No default script. The page reads the text you choose or paste.</p>
 
 <section class="card">
@@ -148,7 +188,6 @@ Did you find it?</pre>
 <details class="card" id="advancedSettings"><summary class="settingsSummary" aria-label="Open advanced settings">
   <div class="advancedHeader">
     <div class="advancedTitle"><div class="advancedIcon">⚙</div><div><h2>Advanced Settings</h2><p>Fine tune how Line Trainer works for your rehearsal.</p></div></div>
-    <button class="settingsClose" type="button" id="advancedCloseBtn">× Close</button>
   </div>
 </summary>
 <div class="settingsBody">
@@ -968,7 +1007,6 @@ function handleAutoCard(item){
   }
 }
 
-if($('advancedCloseBtn')) $('advancedCloseBtn').addEventListener('click',e=>{e.preventDefault(); $('advancedSettings').open=false;});
 if($('soundVolumeRange') && $('soundVolume')){
   $('soundVolumeRange').addEventListener('input',()=>{$('soundVolume').value=$('soundVolumeRange').value;});
   $('soundVolume').addEventListener('input',()=>{$('soundVolumeRange').value=$('soundVolume').value;});

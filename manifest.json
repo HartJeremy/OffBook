@@ -1,5 +1,5 @@
 {
-  "name": "Line Rehearsal Trainer v35",
+  "name": "Line Rehearsal Trainer v37",
   "short_name": "Line Trainer",
   "description": "Offline rehearsal line trainer with smart review, pacing run-through, typing boost, and line lookup.",
   "start_url": "./index.html",
@@ -26,7 +26,13 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
-  "version": "35.0.0"
+  "version": "37.0.0"
 }

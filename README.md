@@ -1,4 +1,4 @@
-# Line Rehearsal Trainer PWA v35
+# Line Rehearsal Trainer PWA v37
 
 This package contains the installable/offline version of the screenplay line trainer.
 
@@ -84,4 +84,8 @@ If you replace icons later, keep the same filenames or update `manifest.json`.
 
 ## Package version
 
-This package is v35. The app title, service-worker cache, manifest, and file names have been aligned to v35.
+This package is v37. The app title, service-worker cache, manifest, and file names have been aligned to v37.
+
+
+## iPhone icon note
+If the Home Screen icon does not update, delete the old installed app, clear Safari website data for the app host, then reinstall. iOS caches PWA icons aggressively.

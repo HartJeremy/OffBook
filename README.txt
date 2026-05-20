@@ -1,4 +1,4 @@
-Line Rehearsal Trainer PWA v35
+Line Rehearsal Trainer PWA v37
 
 How to use:
 1. Put this folder on a local web server or hosting service.
@@ -11,7 +11,7 @@ Quick local test:
 - From this folder, run: python3 -m http.server 8000
 - Open: http://localhost:8000
 
-Includes current v35 features:
+Includes current v37 features:
 - Actor line numbering
 - Rehearsal Navigator
 - Section Lookup
@@ -19,3 +19,7 @@ Includes current v35 features:
 - Pacing run-through
 - Speaking/Typing timing boost
 - Memory dots saved in browser storage
+
+
+## iPhone icon note
+If the Home Screen icon does not update, delete the old installed app, clear Safari website data for the app host, then reinstall. iOS caches PWA icons aggressively.
