@@ -1,4 +1,4 @@
-const CACHE_NAME = 'screenplay-line-trainer-v32';
+const CACHE_NAME = 'screenplay-line-trainer';
 const APP_FILES = [
   './',
   './index.html',
