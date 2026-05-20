@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Line Rehearsal Trainer v37</title>
-<link rel="manifest" href="manifest.json?v=37">
-<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v=37">
-<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=37">
-<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=37">
+<title>Line Rehearsal Trainer v38</title>
+<link rel="manifest" href="manifest.json?v=38">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png?v=38">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png?v=38">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png?v=38">
 <meta name="theme-color" content="#0b0f16">
 <style>
 :root{--bg:#0b0f16;--panel:#121824;--panel2:#151d2a;--text:#edf3ff;--muted:#9fb0ca;--line:#263247;--blue:#7ab7ff;--green:#7ee787;--red:#ff7b8a;--yellow:#f6d365;--purple:#d2a8ff}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}main{max-width:1120px;margin:0 auto;padding:22px}h1{margin:0 0 4px;font-size:28px}h2{margin:22px 0 10px;font-size:20px}.sub,.muted{color:var(--muted)}.card{background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:13px;color:#cbd7ed}input,select,textarea{width:100%;background:#0c111a;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit}textarea{min-height:210px;resize:vertical}.btn{border:1px solid var(--line);background:#202838;color:#fff;border-radius:10px;padding:10px 13px;cursor:pointer;font-weight:750}.btn:hover{filter:brightness(1.08)}.btn:disabled{opacity:.45;cursor:not-allowed}.primary{background:var(--blue);color:#06101e;border-color:transparent}.good{background:var(--green);color:#061506;border-color:transparent}.bad{background:var(--red);color:#210809;border-color:transparent}.warn{background:var(--yellow);color:#1a1200;border-color:transparent}.purple{background:var(--purple);color:#16091f;border-color:transparent}.buttons{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.pill{border:1px solid var(--line);background:#101723;color:#dce7ff;border-radius:999px;padding:5px 10px;font-size:13px}.status{color:var(--muted);font-size:14px}.status strong{color:#fff}.helpbox{background:#101723;border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0}.helpbox pre,.debug pre{white-space:pre-wrap;background:#080c13;border:1px solid #242e40;border-radius:10px;padding:10px;margin:8px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.small{font-size:13px;color:#aebbd3}.yourline{font-size:24px;font-weight:850;min-height:42px;margin:8px 0 12px}.hiddenline{display:inline-block;filter:blur(6px);user-select:none;color:#b7c4d9;font-style:italic;font-weight:850;letter-spacing:.08em}.cue{white-space:pre-wrap;color:#dce7ff;margin:8px 0 14px}.kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:#111722;color:#fff}.shortcuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:6px;color:#cbd7ed;font-size:14px}.ok{color:#8df29d}.no{color:#ff999d}.need{color:#ffe08b}.inlineControls{display:flex;gap:12px;align-items:center;flex-wrap:wrap}.inlineControls label{display:flex;gap:7px;align-items:center;color:#cbd7ed;font-size:14px}.inlineControls input[type="number"]{width:92px;padding:7px 9px}.fileRow{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.fileRow .field{flex:1 1 280px}.debug{display:none}.debug.open{display:block}.hide{display:none!important}.practiceCard{transition:border-color .15s,box-shadow .15s}.practiceCard.status-correct{border-color:rgba(126,231,135,.85);box-shadow:0 0 0 2px rgba(126,231,135,.12)}.practiceCard.status-failed{border-color:rgba(255,123,138,.9);box-shadow:0 0 0 2px rgba(255,123,138,.12)}.practiceCard.status-needs{border-color:rgba(246,211,101,.9);box-shadow:0 0 0 2px rgba(246,211,101,.13)}.statusBadge{font-weight:850;border-width:2px}.statusBadge.status-correct{background:rgba(126,231,135,.16);border-color:rgba(126,231,135,.85);color:#9ff5aa}.statusBadge.status-failed{background:rgba(255,123,138,.16);border-color:rgba(255,123,138,.85);color:#ff9aa5}.statusBadge.status-needs{background:rgba(246,211,101,.16);border-color:rgba(246,211,101,.85);color:#ffe08b}.statusBadge.status-new{background:#101723;color:#dce7ff}.statusLegend{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}.listenLive{border-color:rgba(122,183,255,.85)!important;box-shadow:0 0 0 2px rgba(122,183,255,.14)}.interimPreview{min-height:22px;color:#9fb0ca;font-size:14px;margin-top:6px}.sectionTools{background:#101723;border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:14px}.sectionTools h3{margin:0 0 10px;font-size:16px}.sectionTools .grid{grid-template-columns:2fr 1fr 1fr 1.2fr 1.2fr}
@@ -92,11 +92,103 @@ textarea{min-height:160px;}
 #loadStatus,#fileStatus,#voiceStatus,#sectionStatus,#lookupStatus,#lineLookupStatus,#listenStatus,#feedback,#progress{font-size:14px;}
 @media(max-width:720px){main{padding:12px}.card{border-radius:16px;padding:14px}#sectionLookup,#dialogueLineLookup,#advancedSettings{padding:0}.advancedTitle h2{font-size:21px}.advancedIcon{width:38px;height:38px}.buttons .btn{width:100%}}
 
+
+/* v38 full-app polish: match Advanced Settings visual language */
+:root{
+  --bg:#080c13;--panel:#101723;--panel2:#121b28;--card:#151e2b;--card2:#111925;
+  --text:#f3f7ff;--muted:#9fb0ca;--soft:#cbd7ed;--line:#2a3548;
+  --accent:#ff4454;--accent2:#b51d2a;--blue:#8fc6ff;--green:#7ee787;--red:#ff7b8a;--yellow:#f6d365;--purple:#d2a8ff;
+}
+body{
+  background:
+    radial-gradient(circle at 12% 0%, rgba(255,68,84,.12), transparent 30%),
+    radial-gradient(circle at 90% 8%, rgba(122,183,255,.09), transparent 28%),
+    linear-gradient(180deg,#080c13,#0b111b 42%,#070a10);
+}
+main{max-width:1180px;padding:24px 18px 44px;}
+main>h1{
+  margin:0;padding:22px 24px 4px;font-size:clamp(28px,4vw,42px);letter-spacing:-.03em;
+}
+main>h1 .pill{vertical-align:middle;margin-left:8px;border-color:rgba(255,68,84,.45);background:rgba(255,68,84,.14);color:#ffc7cd;}
+main>.sub{padding:0 24px 12px;margin:0 0 12px;color:#b7c5dc;}
+.card,details.card{
+  background:linear-gradient(180deg,var(--card),var(--card2));
+  border:1px solid var(--line);
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 18px 60px rgba(0,0,0,.18), inset 0 1px rgba(255,255,255,.035);
+}
+.card h2{margin:0 0 14px;font-size:22px;letter-spacing:-.01em;}
+.card h2:before{content:'';display:inline-block;width:9px;height:24px;border-radius:99px;background:linear-gradient(180deg,var(--accent),var(--accent2));margin-right:10px;vertical-align:-5px;box-shadow:0 8px 24px rgba(255,68,84,.22);}
+.helpbox,.sectionTools{
+  background:linear-gradient(180deg,#101824,#0d141f);
+  border:1px solid #28344a;border-radius:16px;padding:14px;
+}
+.helpbox strong{color:#fff}.helpbox pre{border-color:#2a3548;background:#080d15;border-radius:14px;}
+.grid{gap:14px}.field{gap:7px}.field label{color:#cbd7ed;font-weight:700;letter-spacing:.01em;}
+input,select,textarea{
+  background:#0b111b;border:1px solid #2c384c;border-radius:13px;outline:none;
+  box-shadow:inset 0 1px rgba(255,255,255,.025);
+}
+input:focus,select:focus,textarea:focus{border-color:rgba(255,68,84,.75);box-shadow:0 0 0 3px rgba(255,68,84,.12);}
+.btn{
+  background:linear-gradient(180deg,#202a3b,#182132);border:1px solid #314058;border-radius:13px;
+  box-shadow:inset 0 1px rgba(255,255,255,.04);transition:transform .12s,filter .12s,border-color .12s;
+}
+.btn:hover{transform:translateY(-1px);filter:brightness(1.08);border-color:#465775}.btn:active{transform:translateY(0)}
+.primary,.purple{background:linear-gradient(135deg,#ff4454,#b51d2a);color:#fff;border-color:#ff5968;}
+.good{background:linear-gradient(135deg,#39d978,#1f8f4d);color:#041209;border-color:#65e991;}
+.bad{background:linear-gradient(135deg,#ff6b7a,#b42332);color:#fff;border-color:#ff8994;}
+.warn{background:linear-gradient(135deg,#f6d365,#c79a25);color:#1a1200;border-color:#f9df8a;}
+.pill{background:#101723;border-color:#2f3b50;color:#dce7ff;}
+.status{color:#aebbd3}.small{color:#aebbd3}.muted{color:#9fb0ca;}
+.fileRow{gap:10px}.buttons{gap:10px}
+#sectionLookup,#dialogueLineLookup,#advancedSettings{
+  background:linear-gradient(180deg,#121a27,#0e1520);border-color:#2b374b;padding:0;overflow:hidden;
+}
+#sectionLookup>summary,#dialogueLineLookup>summary{
+  padding:18px 22px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,0));
+  border-bottom:1px solid #263247;color:#fff;font-size:20px;
+}
+#sectionLookup>summary:before{content:'▦';color:#ff5b68;margin-right:10px;}
+#dialogueLineLookup>summary:before{content:'⌕';color:#ff5b68;margin-right:10px;}
+.lookupTable{width:calc(100% - 36px);margin:14px 18px;border-collapse:separate;border-spacing:0;border:1px solid #2a3548;border-radius:14px;overflow:hidden;background:#0d141f;}
+.lookupTable th{background:#172233;color:#fff;border-bottom:1px solid #2a3548;text-transform:uppercase;font-size:12px;letter-spacing:.04em;}
+.lookupTable td,.lookupTable th{padding:10px;border-right:1px solid #253148;border-bottom:1px solid #253148;}
+.lookupTable tr:last-child td{border-bottom:0}.lookupTable td:last-child,.lookupTable th:last-child{border-right:0}
+#sectionLookup .lookupNote,#dialogueLineLookup .lookupNote{margin:14px 18px;color:#aebbd3;}
+#advancedSettings summary.settingsSummary{padding:0;}
+#advancedSettings .advancedHeader{border-radius:20px 20px 0 0;}
+#advancedSettings .settingsBody{padding:18px;}
+#advancedSettings .sectionTools{margin-top:16px;border-radius:16px;}
+#advancedSettings .sectionTools h3{color:#ff5b68;text-transform:uppercase;letter-spacing:.04em;font-size:14px;}
+#advancedSettings>.settingsSummary::after,#sectionLookup>summary::after,#dialogueLineLookup>summary::after{
+  content:'Open';float:right;color:#9fb0ca;font-size:13px;font-weight:800;border:1px solid #2f3b50;border-radius:999px;padding:4px 10px;background:#101723;
+}
+#advancedSettings[open]>.settingsSummary::after,#sectionLookup[open]>summary::after,#dialogueLineLookup[open]>summary::after{content:'Hide';}
+.practiceCard{
+  border-color:#33435d;background:linear-gradient(180deg,#151f2d,#0f1723);
+}
+.practiceCard .row h2{font-size:24px}.cue{
+  background:#0d141f;border:1px solid #273348;border-radius:16px;padding:16px;margin:8px 0 16px;min-height:58px;
+}
+.yourline{
+  background:linear-gradient(180deg,#111a27,#0d141f);border:1px solid #273348;border-radius:16px;padding:16px;min-height:66px;
+}
+#attempt{min-height:120px!important;font-size:17px;}
+.mainControls .btn,#practiceCard .buttons .btn{min-height:44px;}
+.shortcuts{background:#0d141f;border:1px solid #273348;border-radius:16px;padding:14px;}
+.kbd{background:#151f2d;border-color:#33435d;}
+@media(max-width:720px){
+  main{padding:12px 10px 28px}main>h1{padding:18px 12px 4px}.card,details.card{border-radius:18px;padding:14px}
+  #sectionLookup>summary,#dialogueLineLookup>summary{padding:16px}.lookupTable{width:calc(100% - 24px);margin:12px;display:block;overflow-x:auto;}
+}
+
 </style>
 </head>
 <body>
 <main>
-<h1>Line Rehearsal Trainer <span class="pill">v37 PWA</span></h1>
+<h1>Line Rehearsal Trainer <span class="pill">v38 PWA</span></h1>
 <p class="sub">Load any plain-text screenplay. No built-in script. No default script. The page reads the text you choose or paste.</p>
 
 <section class="card">

@@ -1,4 +1,4 @@
-# Line Rehearsal Trainer PWA v37
+# Line Rehearsal Trainer PWA v38
 
 This package contains the installable/offline version of the screenplay line trainer.
 
@@ -84,7 +84,7 @@ If you replace icons later, keep the same filenames or update `manifest.json`.
 
 ## Package version
 
-This package is v37. The app title, service-worker cache, manifest, and file names have been aligned to v37.
+This package is v38. The app title, service-worker cache, manifest, and file names have been aligned to v38.
 
 
 ## iPhone icon note
