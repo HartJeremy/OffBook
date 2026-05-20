@@ -1,7 +1,7 @@
 {
-  "name": "Line Rehearsal Trainer",
+  "name": "Line Rehearsal Trainer v35",
   "short_name": "Line Trainer",
-  "description": "Offline rehearsal line trainer with pacing, smart review, sections, and cue practice.",
+  "description": "Offline rehearsal line trainer with smart review, pacing run-through, typing boost, and line lookup.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -27,5 +27,6 @@
       "type": "image/png",
       "purpose": "maskable"
     }
-  ]
+  ],
+  "version": "35.0.0"
 }

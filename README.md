@@ -1,4 +1,4 @@
-# Screenplay Line Trainer PWA
+# Line Rehearsal Trainer PWA v35
 
 This package contains the installable/offline version of the screenplay line trainer.
 
@@ -80,3 +80,8 @@ This package includes updated PNG app icons:
 
 If you replace icons later, keep the same filenames or update `manifest.json`.
 
+
+
+## Package version
+
+This package is v35. The app title, service-worker cache, manifest, and file names have been aligned to v35.

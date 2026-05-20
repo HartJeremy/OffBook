@@ -1,4 +1,4 @@
-Screenplay Line Trainer PWA v31
+Line Rehearsal Trainer PWA v35
 
 How to use:
 1. Put this folder on a local web server or hosting service.
@@ -11,7 +11,7 @@ Quick local test:
 - From this folder, run: python3 -m http.server 8000
 - Open: http://localhost:8000
 
-Includes current v30 features:
+Includes current v35 features:
 - Actor line numbering
 - Rehearsal Navigator
 - Section Lookup
