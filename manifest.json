@@ -1,38 +1,25 @@
 {
-  "name": "Line Rehearsal Trainer v38",
+  "name": "Screenplay Line Trainer",
   "short_name": "Line Trainer",
-  "description": "Offline rehearsal line trainer with smart review, pacing run-through, typing boost, and line lookup.",
-  "start_url": "./index.html?v=38",
+  "description": "A local screenplay rehearsal trainer with cue reading, speech checking, sections, requeue, and miss reports.",
+  "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0b0f16",
-  "theme_color": "#0b0f16",
-  "orientation": "any",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#111827",
   "icons": [
     {
       "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     },
     {
       "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icons/icon-maskable-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "maskable"
-    },
-    {
-      "src": "icons/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "any"
+      "purpose": "any maskable"
     }
-  ],
-  "version": "37.0.0"
+  ]
 }
