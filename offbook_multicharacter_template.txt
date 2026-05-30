@@ -1,0 +1,16 @@
+TITLE: Script Name
+AUTHOR: Author Name
+
+ALICE
+Where is Bob?
+
+BOB
+Right here.
+
+CAROL
+Can we get started?
+
+ALICE
+One second.
+[pause:3]
+Ready.
