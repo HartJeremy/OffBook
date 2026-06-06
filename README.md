@@ -1,60 +1,100 @@
-# OffBook v49
+OffBook PWA v51
 
-OffBook is a cue-based rehearsal app for actors. It supports multi-character scripts, reader voice, microphone practice, random recall, repetition, blocking notes, bookmarks, and session review.
+Overview
 
-## What changed in v49
+OffBook is a Progressive Web App designed to help actors learn lines, practice cues, track progress, and prepare for rehearsals. It runs entirely in the browser and can be installed on desktop, tablet, and mobile devices.
 
-- Fixed audio feedback controls so Test Ding and Test Err force a sound test.
-- Added visible audio status: Audio Ready, Ding played, Err played, or blocked.
-- Increased default feedback volume.
-- Updated service worker registration and cache name to reduce stale GitHub Pages/PWA caching.
-- Updated manifest start URL to `index.html?v=48`.
+Version 51 focuses on parser improvements and mobile usability.
 
-## If GitHub Pages still shows an older version
+⸻
 
-1. Open the GitHub Pages URL in Safari.
-2. Refresh once or twice.
-3. If using the installed home-screen app, delete the old OffBook icon and reinstall from Safari.
-4. On iPhone: Settings > Safari > Advanced > Website Data, then delete data for your GitHub Pages site if it is still stuck.
+New in v51
 
-## Audio feedback
+Parser Improvements
 
-Go to Rehearse > Rehearse settings > Audio feedback.
+The script parser has been expanded to support a wider variety of script formats and writing styles.
 
-1. Tap Enable sound cues.
-2. Confirm the status says Audio Ready.
-3. Tap Test ding or Test err.
-4. Make sure the phone is not muted and volume is up.
+Supported features include:
 
-Browsers block generated audio until a user tap unlocks it, so the Enable button is required.
+* Multiple cast list formats
+* Character aliases and alternate names
+* Character descriptions in cast sections
+* Uppercase and title-case character names
+* Flexible dialogue detection
+* Common stage play and screenplay formatting
 
-## Script format
+The parser now ignores common script metadata including:
 
-```txt
-TITLE: My Script
-AUTHOR: Writer Name
+* Cast headings
+* Time and place sections
+* Setting descriptions
+* At Rise sections
+* Act and scene headings
+* Interior and exterior scene markers
+* End-of-script markers
 
-JAY
-I know it landed here somewhere.
+Character Detection Improvements
 
-REESE
-Did you find it?
+The parser more accurately identifies speaking roles while filtering out production notes, scene descriptions, and non-character elements.
 
-JAY
-Not yet.
-[pause:2]
-Come help me look.
-```
+Supported scenarios include:
 
-Optional tags after a line:
+* Small cast productions
+* Large ensemble productions
+* One-act plays
+* Full-length plays
+* Screenplay-style formatting
+* Competition scripts
+* Contemporary and traditional formats
 
-```txt
-[block: Move DSR]
-[note: Softer, not angry]
-[prop: Golf wedge]
-```
+Import Validation
+
+Additional parser feedback is displayed during import to help identify formatting issues and improve script accuracy before practice begins.
+
+Mobile Role Selection
+
+The role selection interface has been redesigned for smaller screens.
+
+Improvements include:
+
+* Vertical role layout
+* Improved spacing
+* Better touch targets
+* Reduced text overflow issues
+* Cleaner display of line counts
+
+⸻
+
+Known Limitations
+
+Future parser enhancements may include:
+
+* Musical-specific formatting
+* Character doubles and understudies
+* Advanced screenplay formats
+* Enhanced PDF recovery
+* Automatic scene extraction
+* Production tagging
+
+⸻
 
 
-## v49 Fix
+Technology
 
-Cue reader now speaks dialogue only. Character names still display visually but are not read aloud by the reader voice.
+* HTML5
+* CSS3
+* Vanilla JavaScript
+* IndexedDB
+* Web Speech API
+* Progressive Web App (PWA)
+
+Runs entirely in the browser with no server required.
+
+⸻
+
+Version
+
+Current Version: v51
+
+Release Focus:
+Parser Expansion and Mobile Role Selection
